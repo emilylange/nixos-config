@@ -1,0 +1,169 @@
+{
+  "nodes": {
+    "colmena": {
+      "inputs": {
+        "flake-compat": "flake-compat",
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "stable": "stable"
+      },
+      "locked": {
+        "lastModified": 1682737380,
+        "narHash": "sha256-n3rZkHZls9BNr35o3veK00UsM1KSh/oNTJjLkFbEOY8=",
+        "owner": "zhaofengli",
+        "repo": "colmena",
+        "rev": "be837ee341b6508c355035973d5f7c7e88d7c64f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zhaofengli",
+        "repo": "colmena",
+        "type": "github"
+      }
+    },
+    "flake-compat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1650374568,
+        "narHash": "sha256-Z+s0J8/r907g149rllvwhb4pKi8Wam5ij0st8PwAh+E=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "b4a34015c698c7793d592d66adbab377907a2be8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1659877975,
+        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1683543852,
+        "narHash": "sha256-aS9qNcg9GwSYFLCWa3Lw+2nVPG11mmQ3B7Oka1hh04M=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "3f3fa731ad0f99741d4dc98e8e1287b45e30b452",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1683269598,
+        "narHash": "sha256-KNsb+nBbB1Fmxd07dt4E0KXMT4YeKJB7gQaA6Xfk+mo=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "51559e691f1493a26f94f1df1aaf516bb507e78b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1683408522,
+        "narHash": "sha256-9kcPh6Uxo17a3kK3XCHhcWiV1Yu1kYj22RHiymUhMkU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "897876e4c484f1e8f92009fd11b7d988a121a4e7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-small": {
+      "locked": {
+        "lastModified": 1683599965,
+        "narHash": "sha256-ZhvSInIeXUC8gbAePxpi8SXX8yUnIOiDzoT6w1zSTLM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "e138708d302b925c55391908dcfdd7bfacbdcbb9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable-small",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "redacted": {
+      "locked": {
+        "lastModified": 1684009396,
+        "narHash": "sha256-xm2g8YDARz5canBRsbZLBx3AXliYjlAUBG+yECvEAUQ=",
+        "ref": "refs/heads/main",
+        "rev": "78b5c9b9a92a3beb2090a48f3559fc7646599c54",
+        "revCount": 2,
+        "type": "git",
+        "url": "ssh://git@git.geklaute.cloud/IndeedNotJames/nixos-config-redacted"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@git.geklaute.cloud/IndeedNotJames/nixos-config-redacted"
+      }
+    },
+    "root": {
+      "inputs": {
+        "colmena": "colmena",
+        "home-manager": "home-manager",
+        "nixos-hardware": "nixos-hardware",
+        "nixpkgs": "nixpkgs",
+        "nixpkgs-small": "nixpkgs-small",
+        "redacted": "redacted"
+      }
+    },
+    "stable": {
+      "locked": {
+        "lastModified": 1669735802,
+        "narHash": "sha256-qtG/o/i5ZWZLmXw108N2aPiVsxOcidpHJYNkT45ry9Q=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "731cc710aeebecbf45a258e977e8b68350549522",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-22.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "config:base",
+    "docker:pinDigests"
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": [
+        "^.*\\.nix$"
+      ],
+      "matchStrings": [
+        "renovate:\\sdocker\\s*([a-zA-Z0-9-_]*)\\s?=\\s?\"(?<depName>.*?):(?<currentValue>.*?)(@(?<currentDigest>sha256:[a-f0-9]+))?\";"
+      ],
+      "datasourceTemplate": "docker"
+    }
+  ],
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json"
+}

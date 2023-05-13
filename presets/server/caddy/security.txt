@@ -1,0 +1,32 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+# https://securitytxt.org/
+Preferred-Languages: en, de, nl
+Expires: 2023-12-31T23:59:59+01:00
+
+Contact: matrix:u/me:indeednotjames.com?action=chat
+Contact: mailto:security.txt@indeednotjames.com
+
+Canonical: https://indeednotjames.com/.well-known/security.txt
+
+# Signing key (can't be used for encryption)
+# https://github.com/IndeedNotJames.gpg
+# https://codeberg.org/IndeedNotJames.gpg
+# https://git.geklaute.cloud/IndeedNotJames.gpg
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEVFKJGT3Qe/8r3yiACtdzzkb9D4cFAmPZq4AACgkQCtdzzkb9
+D4dO2hAAhvqtOcih1mFDExTGw5x/YpzdAnhHTXF5XQufl8Qq2OAIKqc2Vw0hek1+
+fbi3/KhlAghe3hP4N4seFrFqz9nHE2/82ta7ngkbtbRaSoJdC63VUYDpormCLjXz
+fPXeM8aMmGpPIKrgZgvKh9808sw/qSdjzlUwCVWAabg2q0WgoPTvfN2NHb/HL9Sv
+gNHZNuVrUMoYO49h+R7EZ63wsfDIDCKmQhiFzdkrt0mO11RdThDEKf6maNd4/GQe
+wAuQtJgbhCL986RldYbUMLHafFmeFFEdWcLsxz/eWynL9H5oSz0cr6Gm+HUxOU/F
+5rsxSiJp/jFkywbR9RSRMWuBQPEDpOcfE+0KqnkJP4uckUDub2FVZwjzvlw1H9Ld
+TnWRCAELmSqa1yP7Fw5Bt42D6vDv08HH3vekkK2Zsy0wBcqsNtI5LsPCjYUW1Nwu
+TZCmlzOJ5JzMn4JAYiQcOj/gAo6coWrt11Be88AyJsyJCeaC5LC4SNP4plxLuDzm
+jRTNfdZoJYam7s/yNbzNGrgVHmsXJ93c/1EMBmUfwfWNZPRdBpdsJHYHNvzUNfxK
+eZVHQEX+CmDI6qLNW0m4FfjmRogLPFs+d6LI5JaAFxAc1BjOvSPB9Rcvk5mLvuPT
+LCDJ9VtHpZuFqXwW06Ru9CIgxbl7rAUEr09dI4sEUfo8kV2CEgM=
+=fPjG
+-----END PGP SIGNATURE-----
