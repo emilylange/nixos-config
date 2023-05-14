@@ -18,6 +18,7 @@ local build(attr) = {
     {
       name: 'build current commit',
       commands: [
+        'git config --global url."https://git.geklaute.cloud".insteadOf ssh://git@git.geklaute.cloud',
         'git checkout -q $DRONE_COMMIT',
         'nix build --print-build-logs --out-link ./$DRONE_COMMIT %s' % attr,
       ],
