@@ -1,4 +1,4 @@
-{ pkgs, inputs, osConfig, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -12,11 +12,7 @@
     brightnessctl
     caddy
     chromium
-    (
-      if (lib.versionAtLeast colmena.version "0.4.0")
-      then throw "`home.packages`'s unstable colmena should be switched to stable again"
-      else inputs.colmena.defaultPackage.${osConfig.nixpkgs.system}
-    )
+    colmena
     discord
     dogdns ## has no IPv6 support :<
     drone-cli
