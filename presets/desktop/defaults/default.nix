@@ -24,6 +24,10 @@
 
   services.fwupd.enable = true;
 
+  ## yubikey
+  programs.gnupg.agent.enable = true;
+  services.pcscd.enable = true;
+
   ## enable cross compilation for aarch64
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
