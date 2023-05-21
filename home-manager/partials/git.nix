@@ -5,8 +5,8 @@
     enable = true;
     package = pkgs.gitFull;
 
-    userName = "IndeedNotJames";
-    userEmail = "git@indeednotjames.com";
+    userName = "emilylange";
+    userEmail = "git@emilylange.de";
     lfs.enable = true;
     signing = {
       signByDefault = true;
