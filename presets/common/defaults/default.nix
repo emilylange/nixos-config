@@ -6,6 +6,11 @@
   ];
 
   config = {
+    ## TODO: remove when https://github.com/NixOS/nixpkgs/pull/233024 landed in nixos-unstable
+    nixpkgs.config.permittedInsecurePackages = [
+      "nodejs-16.20.0"
+    ];
+
     networking.nameservers = [
       "2606:4700:4700::1001" ## cloudflare
       "2620:fe::fe" ## quad9

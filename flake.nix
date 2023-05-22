@@ -10,7 +10,7 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    redacted.url = "git+ssh://git@git.geklaute.cloud/IndeedNotJames/nixos-config-redacted";
+    redacted.url = "git+ssh://git@git.geklaute.cloud/emilylange/nixos-config-redacted";
   };
 
   outputs = { self, ... } @ inputs:
