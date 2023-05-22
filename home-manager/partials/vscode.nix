@@ -24,6 +24,8 @@
         python3
 
         ## go
+        delve
+        go-tools
         gopls
       ]
     );
