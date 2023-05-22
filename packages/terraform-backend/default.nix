@@ -19,6 +19,6 @@ pkgs.buildGoModule rec {
     homepage = "https://github.com/nimbolus/terraform-backend";
     description = "A state backend server which implements the Terraform HTTP backend API";
     license = licenses.bsd3;
-    maintainers = with maintainers; [ indeednotjames ];
+    maintainers = with maintainers; [ emilylange ];
   };
 }

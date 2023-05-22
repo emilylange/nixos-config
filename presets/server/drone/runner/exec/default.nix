@@ -5,7 +5,7 @@
     wantedBy = [ "multi-user.target" ];
 
     environment = {
-      DRONE_LIMIT_REPOS = "IndeedNotJames/*";
+      DRONE_LIMIT_REPOS = "emilylange/*";
       DRONE_LIMIT_TRUSTED = "true";
       DRONE_RPC_HOST = "drone.geklaute.cloud";
       DRONE_RPC_PROTO = "https";

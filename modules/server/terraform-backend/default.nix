@@ -64,5 +64,5 @@ in
     users.groups.${group} = { };
   };
 
-  meta.maintainers = with maintainers; [ indeednotjames ];
+  meta.maintainers = with maintainers; [ emilylange ];
 }
