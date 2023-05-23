@@ -6,27 +6,26 @@ Preferred-Languages: en, de, nl
 Expires: 2023-12-31T23:59:59+01:00
 
 Contact: matrix:u/me:indeednotjames.com?action=chat
-Contact: mailto:security.txt@indeednotjames.com
+Contact: mailto:security.txt@emilylange.de
 
-Canonical: https://indeednotjames.com/.well-known/security.txt
+Canonical: https://geklautecloud.de/.well-known/security.txt
 
 # Signing key (can't be used for encryption)
-# https://github.com/IndeedNotJames.gpg
-# https://codeberg.org/IndeedNotJames.gpg
-# https://git.geklaute.cloud/IndeedNotJames.gpg
+# https://github.com/emilylange.gpg
+# https://git.geklaute.cloud/emilylange.gpg
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEVFKJGT3Qe/8r3yiACtdzzkb9D4cFAmPZq4AACgkQCtdzzkb9
-D4dO2hAAhvqtOcih1mFDExTGw5x/YpzdAnhHTXF5XQufl8Qq2OAIKqc2Vw0hek1+
-fbi3/KhlAghe3hP4N4seFrFqz9nHE2/82ta7ngkbtbRaSoJdC63VUYDpormCLjXz
-fPXeM8aMmGpPIKrgZgvKh9808sw/qSdjzlUwCVWAabg2q0WgoPTvfN2NHb/HL9Sv
-gNHZNuVrUMoYO49h+R7EZ63wsfDIDCKmQhiFzdkrt0mO11RdThDEKf6maNd4/GQe
-wAuQtJgbhCL986RldYbUMLHafFmeFFEdWcLsxz/eWynL9H5oSz0cr6Gm+HUxOU/F
-5rsxSiJp/jFkywbR9RSRMWuBQPEDpOcfE+0KqnkJP4uckUDub2FVZwjzvlw1H9Ld
-TnWRCAELmSqa1yP7Fw5Bt42D6vDv08HH3vekkK2Zsy0wBcqsNtI5LsPCjYUW1Nwu
-TZCmlzOJ5JzMn4JAYiQcOj/gAo6coWrt11Be88AyJsyJCeaC5LC4SNP4plxLuDzm
-jRTNfdZoJYam7s/yNbzNGrgVHmsXJ93c/1EMBmUfwfWNZPRdBpdsJHYHNvzUNfxK
-eZVHQEX+CmDI6qLNW0m4FfjmRogLPFs+d6LI5JaAFxAc1BjOvSPB9Rcvk5mLvuPT
-LCDJ9VtHpZuFqXwW06Ru9CIgxbl7rAUEr09dI4sEUfo8kV2CEgM=
-=fPjG
+iQIzBAEBCgAdFiEEVFKJGT3Qe/8r3yiACtdzzkb9D4cFAmRsAgAACgkQCtdzzkb9
+D4cKDRAApYNRv/qKMfM1M6aNzo4sBbrikJPqdpVRrvPc/3xic/FfZXA3ZQ7GtRQN
+bY1dwlWlJMe5dxzAvfsHx/iB5YwOkInxZGWN9t/wHYyYjnX8zKpqNiJmDq2UoEfT
+0y7sO3U842hvgSm87KUwUoyJgr+doBxmdmamXqI66KuQ/Os34ivpZJIraK5vObsW
+0NVvBLdSmE1X81YTrcjLxFpZ7hbeUDVmejCbmFqyPpiS5UNx8Dt88WCSXxUGP4VB
+UqfMYPiwukNqtGrarDcpZAjd6o1N2aQhXYI4MY/XRJEsjj9pZrkXK74MIc02h1/6
+W2RHp9C5KDruGACqnP1rCnLG+agJwU29e5Qf/+c03T1uNbbJ2is4m0zF/p0hLc2+
+y6AldCCV+egNlOJPt3nAnmVHRq5y+7SXl32I75ly3dD2GuHxi9qIDir1CQVdnBy3
+r1Vv9eBV2m5dbkMLRVHXelNHs8AUMUllC0j0OmxsEZ2SX3EjvqslY3umrfkLkHC2
+AHEaWAnVfKNRVBkuLmnaiyXk1nhSYweoInYTQir3CIIDR+IZArZO6296N6E0ycq3
+DmPewEKMQFVlwE37Hp0G6/HvTQPBsiktJVfZ0W+C1Yv9/iQgYV810NqKSHhb2kYv
+pVtJwv72yUGD5PpJ2600FO3X1M3EfSOaLy4zMi5f2LTnXEYZcYk=
+=2A3y
 -----END PGP SIGNATURE-----
