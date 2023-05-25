@@ -22,16 +22,9 @@
       max_upload_size = "100M";
 
       suppress_key_server_warning = true;
-      ## TODO: allow omitting`verify_keys` (instead of `null`)
       trusted_key_servers = [
-        {
-          server_name = "indeednotjames.com";
-          verify_keys."ed25519:a_ZhzH" = "TVeg4DFedaO2cC62GEpHlnunzEZ+WjS9YZ8aKfyHFfk";
-        }
-        {
-          server_name = "matrix.org";
-          verify_keys."ed25519:auto" = "Noi6WqcDj0QmPxCNQqgezwTlBKrfqehY1u2FyWP9uYw";
-        }
+        { server_name = "indeednotjames.com"; }
+        { server_name = "matrix.org"; }
       ];
 
       listeners = [{
