@@ -140,6 +140,12 @@ in
           redir https://github.com/emilylange
         }
       }
+
+      emilylange.de *.emilylange.de {
+        import defaults
+
+        redir https://github.com/emilylange
+      }
     '' + /Caddyfile;
   };
 
