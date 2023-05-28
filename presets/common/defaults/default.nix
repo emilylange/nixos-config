@@ -7,9 +7,9 @@
 
   config = {
     networking.nameservers = [
-      "2606:4700:4700::1001" ## cloudflare
-      "2620:fe::fe" ## quad9
-      "1.0.0.1" ## cloudflare
+      "2a0f:fc80::"
+      "2a0f:fc81::"
+      "193.110.81.0"
     ];
 
     ## enable dns resolution for podman networks, specified here,

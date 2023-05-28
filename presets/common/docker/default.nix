@@ -23,9 +23,8 @@ in
       ## "Issue: Feature request: IPv6-enabled embedded DNS server" (partially)
       ## https://github.com/moby/moby/issues/41651)
       dns = [
-        "1.1.1.1"
-        "1.0.0.1"
-        "8.8.8.8"
+        "193.110.81.0"
+        "185.253.5.0"
       ];
 
       ipv6 = true;
