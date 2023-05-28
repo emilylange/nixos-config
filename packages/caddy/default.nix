@@ -43,6 +43,5 @@ caddy.override {
     subPackages = [ "." ];
     ldflags = [ "-s" "-w" ]; ## don't include version info twice
     vendorHash = null;
-    vendorSha256 = "_unset";
   });
 }
