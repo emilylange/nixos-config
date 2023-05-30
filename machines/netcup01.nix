@@ -9,6 +9,7 @@
     ../presets/server/drone/server
     ../presets/server/gitea
     ../presets/server/miniflux
+    ../presets/server/ntfy-sh
     ../presets/server/uptime-kuma
     ../presets/server/vaultwarden
     "${modulesPath}/profiles/qemu-guest.nix"

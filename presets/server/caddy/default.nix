@@ -91,6 +91,11 @@ in
           reverse_proxy /notifications/hub netcup01:3012
         }
 
+        @ntfy.geklaute.cloud host ntfy.geklaute.cloud
+        handle @ntfy.geklaute.cloud {
+          reverse_proxy unix/${config.services.ntfy-sh.settings.listen-unix}
+        }
+
         handle {
           redir https://geklaute.cloud{uri}
         }
