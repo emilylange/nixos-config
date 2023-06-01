@@ -1,6 +1,10 @@
 builtins.mapAttrs
   (name: value: {
-    identityFile = "~/.ssh/id_ed25519-git";
+    identityFile = "~/.ssh/id_ed25519_sk-git";
+    extraOptions = {
+      PasswordAuthentication = "no";
+      PreferredAuthentications = "publickey";
+    };
   } // value)
   {
     "netcup01" = {

@@ -1,12 +1,18 @@
 {
   git = {
     host = builtins.concatStringsSep " " [
+      "codeberg.org"
+      "git.dn42.dev"
+      "git.geklaute.cloud"
+      "gitea.com"
       "github.com"
       "gitlab.com"
-      "gitea.com"
-      "git.geklaute.cloud"
     ];
     user = "git";
-    identityFile = "~/.ssh/id_ed25519-git";
+    identityFile = "~/.ssh/id_ed25519_sk-git";
+    extraOptions = {
+      PasswordAuthentication = "no";
+      PreferredAuthentications = "publickey";
+    };
   };
 }
