@@ -3,14 +3,14 @@
 {
   nix = {
     gc = {
-      automatic = true;
-      dates = if config.isServer then "daily" else "monthly";
-      options = "--delete-older-than 14d";
+      automatic = config.isServer;
+      dates = "daily";
+      options = "--delete-older-than 7d";
       persistent = true;
       randomizedDelaySec = "12h";
     };
 
-    optimise.automatic = true;
+    optimise.automatic = config.isServer;
 
     settings = {
       auto-optimise-store = false; ## enabling it can cause significant performance degradation on slow systems
@@ -19,13 +19,17 @@
 
     ## not a huge fan of github:NixOS/flake-registry
     registry = {
-      nixpkgs.flake = inputs.nixpkgs;
+      nixpkgs.flake = inputs.${if config.isServer then "nixpkgs-small" else "nixpkgs"};
+      n.to = { id = "nixpkgs"; type = "indirect"; }; ## shortcut
     };
 
-    extraOptions = ''
-      experimental-features = nix-command flakes
-      flake-registry = /etc/nix/registry.json
-    '';
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      flake-registry = "/etc/nix/registry.json";
+    };
 
     nixPath = [
       "nixpkgs=flake:nixpkgs"
