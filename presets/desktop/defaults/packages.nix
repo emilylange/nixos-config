@@ -21,6 +21,11 @@
   ## which I don't want to do rn, because I use flakes instead :eyes:
   programs.command-not-found.enable = false;
 
+  ## disable x11-ssh-askpass prompt
+  programs.ssh = {
+    enableAskPassword = false;
+  };
+
   programs.steam = {
     enable = true;
     # remotePlay.openFirewall = true;
