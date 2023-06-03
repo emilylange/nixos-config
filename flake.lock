@@ -61,11 +61,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1685189510,
-        "narHash": "sha256-Hq5WF7zIixojPgvhgcd6MBvywwycVZ9wpK/8ogOyoaA=",
+        "lastModified": 1685721552,
+        "narHash": "sha256-ifvq/zlO7lck8q+YkC5uom/h8/MVdMcQEldOL3cDQW0=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "2d963854ae2499193c0c72fd67435fee34d3e4fd",
+        "rev": "29519461834c08395b35f840811faf8c23e3b61c",
         "type": "github"
       },
       "original": {
@@ -92,11 +92,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1685168767,
-        "narHash": "sha256-wQgnxz0PdqbyKKpsWl/RU8T8QhJQcHfeC6lh1xRUTfk=",
+        "lastModified": 1685655444,
+        "narHash": "sha256-6EujQNAeaUkWvpEZZcVF8qSfQrNVWFNNGbUJxv/A5a8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e10802309bf9ae351eb27002c85cfdeb1be3b262",
+        "rev": "e635192892f5abbc2289eaac3a73cdb249abaefd",
         "type": "github"
       },
       "original": {
@@ -108,11 +108,11 @@
     },
     "nixpkgs-small": {
       "locked": {
-        "lastModified": 1685259514,
-        "narHash": "sha256-QYqxkmN6hvCxnuCREHwJ3b5xJPNr3kMj89DyagWxdO4=",
+        "lastModified": 1685780302,
+        "narHash": "sha256-NckUaSu5MxNGC9bctaiZEwjSxbJm9jVj3qHq/zwamvA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4f4d0cc9397b63e9344a626b9a59d530fd274de1",
+        "rev": "15fded2696f08d5550b00de4661b352d41e2374a",
         "type": "github"
       },
       "original": {
@@ -124,11 +124,11 @@
     },
     "redacted": {
       "locked": {
-        "lastModified": 1684776944,
-        "narHash": "sha256-V2xhUOvBHuw+kSa/DXzqlHGx4I/TH2cs2l6bb2Z5D6o=",
+        "lastModified": 1685654286,
+        "narHash": "sha256-PTqtB5xGNl2P8sPpyIoRWcMBrlro/uJJ2NJ/t3g6Jjw=",
         "ref": "refs/heads/main",
-        "rev": "13c796698d387aeb2a72affc295bbaa438c3b697",
-        "revCount": 3,
+        "rev": "ca9f691cc5beda37e91062200daa0c0939fd7923",
+        "revCount": 4,
         "type": "git",
         "url": "ssh://git@git.geklaute.cloud/emilylange/nixos-config-redacted"
       },
