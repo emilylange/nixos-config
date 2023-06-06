@@ -1,6 +1,6 @@
 builtins.mapAttrs
   (name: value: {
-    identityFile = "~/.ssh/id_ed25519_sk-git";
+    identityFile = "~/.ssh/id_ed25519_sk-gkcl";
     extraOptions = {
       PasswordAuthentication = "no";
       PreferredAuthentications = "publickey";
@@ -20,4 +20,7 @@ builtins.mapAttrs
       hostname = "2603:c020:800b:36ff::abcd";
     };
 
+    "futro" = {
+      hostname = "192.168.10.12";
+    };
   } // { }

@@ -16,7 +16,7 @@
   };
 
   users.users.root.openssh.authorizedKeys.keys = [
-    "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIAezsP3Y2nFa+YubXIvgaHRuSohJUdj3ctzoqvzcwwwgAAAABHNzaDo="
+    "no-touch-required sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIOGTGUQL/DO/W296QpWa+Y0a6YVf33XUPG7WVP/vSXpYAAAABHNzaDo="
   ];
 
   ## expose configured ssh port on any interface
