@@ -3,6 +3,7 @@
 {
   imports = [
     ../presets/common/docker
+    ../presets/server/acme-dns
     ../presets/server/caddy
     ../presets/server/coturn
     ../presets/server/drone
