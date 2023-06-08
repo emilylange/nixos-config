@@ -1,6 +1,9 @@
-## It seems like we could theoretically get all the nessecary data (enabled and connected) 
-## from /sys/class/drm/*, but it I am unsure how to map 'DP-1' to the correct 'DisplayPort-1' device.
-## And since the performance impact when parsing xrandr seems not that big, we might a will just use xrandr.
+## It seems like we could theoretically get most of the nessecary data (enabled and connected)
+## from /sys/class/drm/*, but it I am unsure how to map 'DP-1' to the correct 'DisplayPort-1'
+## device (and which monitor is the primary one). And since the performance impact when parsing
+## xrandr seems not that big, we might a will just use xrandr.
+## Funnily enough one of my USB-C to HDMI adapter crashed on every single `xrandr` invocation.
+## Which is why this script no polls for changes every 10 seconds.
 
 xrandr_output="$(/run/current-system/sw/bin/xrandr --listactivemonitors)"
 ## Example xrandr output:
@@ -16,16 +19,6 @@ regex='^([[:digit:]]):.*  (.+)$'
 ## The primary monitor is marked with an asterisk.
 ## In different tests in seemed like the primary monitor is always in position 0,
 ## so we use that instead for simplicity.
-
-update() {
-  ## kill all existing polybars
-  for pid in $(/run/current-system/sw/bin/pidof polybar) ; do 
-    kill $pid
-  done
-
-  ## restart polybars with new monitor layout
-  start
-}
 
 start() {
   ## Loop over each line in xrandr output
@@ -47,13 +40,4 @@ start() {
 }
 
 ## initialize
-update
-
-## main update loop
-while /run/current-system/sw/bin/sleep 10; do
-  xrandr_output_new="$(/run/current-system/sw/bin/xrandr --listactivemonitors)"
-  if [[ $xrandr_output != $xrandr_output_new ]]; then
-    xrandr_output=$xrandr_output_new
-    update
-  fi
-done &
+start
