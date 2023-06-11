@@ -26,23 +26,12 @@
     enableAskPassword = false;
   };
 
-  programs.steam = {
-    enable = true;
-    # remotePlay.openFirewall = true;
-  };
-
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [
       thunar-archive-plugin
       thunar-media-tags-plugin
     ];
-  };
-
-  programs.weylus = {
-    enable = true;
-    users = [ "me" ];
-    openFirewall = false;
   };
 
   networking.networkmanager = {

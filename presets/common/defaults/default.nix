@@ -22,7 +22,7 @@
     ];
 
     environment.systemPackages = with pkgs; [
-      bandwhich
+      bandwhich ## currently broken. upstream: https://github.com/imsnif/bandwhich/pull/265
       bat ## cat alternative
       curlHTTP3
       dnsutils ## dig
