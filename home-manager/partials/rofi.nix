@@ -23,6 +23,7 @@
           white = mkLiteral white;
 
           background-color = mkLiteral "@background";
+          text-color = mkLiteral "@white";
         };
 
         window = {
@@ -34,15 +35,13 @@
         prompt = {
           enabled = true;
           padding = 2;
-          text-color = mkLiteral "@white";
         };
 
         entry = {
           padding = 2;
-          text-color = mkLiteral "@white";
         };
 
-        mainbox = {
+        "mainbox, error-message" = {
           padding = 12;
         };
 
@@ -56,7 +55,6 @@
 
           margin = mkLiteral "2 0";
           padding = mkLiteral "10 5";
-          text-color = mkLiteral "@white";
         };
 
         "element selected" = {
