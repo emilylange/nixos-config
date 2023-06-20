@@ -3,14 +3,19 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+    inputs.lanzaboote.nixosModules.lanzaboote
     inputs.nixos-hardware.nixosModules.framework
   ];
 
   boot = {
     kernelModules = [ "kvm-intel" ];
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot.enable = false; ## lanzaboote requires this to be disabled (for now)
       efi.canTouchEfiVariables = true;
+    };
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
     };
     initrd = {
       availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
