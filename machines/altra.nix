@@ -61,23 +61,9 @@
     };
   };
 
-  boot = {
-    loader = {
-      grub = {
-        enable = true;
-        efiSupport = true;
-
-        ## Oracle Cloud dropped me into an EFI shell from time to time and this might fix it
-        efiInstallAsRemovable = true;
-
-        devices = [ "nodev" ];
-        extraConfig = ''
-          serial --unit=0 --speed=115200 --word=8 --parity=no --stop=1
-          terminal_input --append serial
-          terminal_output --append serial
-        '';
-      };
-    };
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = false;
   };
 
   networking.wireguard.interfaces.internal = {
