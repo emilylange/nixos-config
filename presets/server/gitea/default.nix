@@ -124,6 +124,8 @@ in
       ## See https://github.com/go-gitea/gitea/tree/main/contrib/environment-to-ini
       ## and https://docs.gitea.io/en-us/install-with-docker/#managing-deployments-with-environment-variables
       EnvironmentFile = config.deployment.keys."gitea_additional_env".path;
+      ## TODO: remove when https://github.com/NixOS/nixpkgs/pull/242863 is resolved
+      RuntimeDirectoryMode = lib.mkForce "0755";
     } // lib.optionalAttrs (sshPort < 1024) {
       AmbientCapabilities = lib.mkForce "CAP_NET_BIND_SERVICE";
       CapabilityBoundingSet = lib.mkForce "CAP_NET_BIND_SERVICE";
