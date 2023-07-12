@@ -1,17 +1,16 @@
-{ pkgs, modulesPath, nodes, ... }:
+## Scaleway "stardust" compute instance
+## https://www.scaleway.com/en/stardust-instances/
+{ pkgs, modulesPath, ... }:
 
 ## Scaleway's IPv6 isn't static. Wtf.
 ## They may or may not change on a reboot -- without notice.
 ## See https://feature-request.scaleway.com/posts/209/truly-static-ipv6
 ## and https://feature-request.scaleway.com/posts/198/slaac-or-dhcpv6-support-for-ipv6-address-assignment
 let
-  subnet = "2001:bc8:1830:316:";
+  subnet = "2001:db8:";
 in
 {
   imports = [
-    ../presets/common/docker
-    ../presets/server/drone
-    ../presets/server/drone/runner/docker
     "${modulesPath}/profiles/qemu-guest.nix"
   ];
 
@@ -25,12 +24,6 @@ in
   networking.defaultGateway6 = {
     address = "${subnet}:";
     interface = "eth0";
-  };
-
-  networking.clat = {
-    enable = true;
-    ipv6 = "${subnet}:64";
-    nat64 = nodes.netcup01.config.networking.nat64.subnet;
   };
 
   boot = {

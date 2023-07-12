@@ -12,10 +12,6 @@ builtins.mapAttrs
       port = 22222;
     };
 
-    "stardust" = {
-      hostname = "2001:bc8:1830:316::1";
-    };
-
     "altra" = {
       hostname = "2603:c020:800b:36ff::abcd";
     };

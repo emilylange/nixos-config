@@ -45,6 +45,5 @@ local build(attr) = {
     'futro',
     'netcup01',
     'ryzen',
-    'stardust',
   ]
 ]
