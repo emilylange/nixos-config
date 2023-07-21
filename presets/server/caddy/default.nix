@@ -119,7 +119,31 @@ in
         }
       }
 
-      indeednotjames.com *.indeednotjames.com {
+      indeednotjames.com {
+        import defaults
+
+        handle_path /.well-known/matrix/* {
+          header Content-Type application/json
+          header Access-Control-Allow-Origin *
+
+          respond /client `${builtins.toJSON {
+            "m.homeserver".base_url = "https://mx-synapse.indeednotjames.com";
+            "org.matrix.msc3575.proxy".url = "https://mx-sliding-sync.indeednotjames.com";
+          }}`
+
+          respond /server `${builtins.toJSON {
+            "m.server" = "mx-synapse.indeednotjames.com:443";
+          }}`
+
+          respond 404
+        }
+
+        handle {
+          redir https://github.com/emilylange
+        }
+      }
+
+      *.indeednotjames.com {
         import defaults
 
         @git host git.indeednotjames.com
@@ -132,13 +156,9 @@ in
           reverse_proxy ${altraInternal}:18008
         }
 
-        handle_path /.well-known/matrix/* {
-          header Content-Type application/json
-          header Access-Control-Allow-Origin *
-
-          respond /client `{ "m.homeserver": { "base_url": "https://mx-synapse.indeednotjames.com" } }`
-          respond /server `{ "m.server": "mx-synapse.indeednotjames.com:443" }`
-          respond 404
+        @mx-sliding-sync host mx-sliding-sync.indeednotjames.com
+        handle @mx-sliding-sync {
+          reverse_proxy ${altraInternal}:8009
         }
 
         handle {
