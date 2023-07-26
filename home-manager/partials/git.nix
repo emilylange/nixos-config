@@ -15,10 +15,8 @@
 
     extraConfig = {
       init.defaultBranch = "main";
+      commit.verbose = true;
       pull.rebase = true;
-
-      ## https://difftastic.wilfred.me.uk/git.html
-      diff.external = "${pkgs.difftastic}/bin/difft";
 
       merge.conflictStyle = "zdiff3";
 
