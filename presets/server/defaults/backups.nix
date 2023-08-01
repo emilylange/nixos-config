@@ -26,7 +26,7 @@ in
       hostType = "server";
       timerOnCalendar = "00/2:15"; ## uses RandomizedDelaySec
       providers.borg.secrets = filename secrets.borg;
-      providers.restic.secrets = filename secrets.restic;
+      # providers.restic.secrets = filename secrets.restic;
     };
 
   deployment.keys = lib.concatMapAttrs

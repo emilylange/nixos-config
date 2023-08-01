@@ -8,7 +8,7 @@ in
 {
   imports = [
     ./providers/borg.nix
-    ./providers/restic.nix
+    # ./providers/restic.nix
   ];
 
   options.backups = mkOption {
