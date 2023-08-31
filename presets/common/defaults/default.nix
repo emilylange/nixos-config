@@ -1,4 +1,4 @@
-{ pkgs, redacted, ... }:
+{ lib, pkgs, redacted, ... }:
 
 {
   imports = [
@@ -40,6 +40,9 @@
     boot.loader = {
       timeout = 1;
       systemd-boot.consoleMode = "max";
+
+      grub.configurationLimit = lib.mkDefault 20;
+      systemd-boot.configurationLimit = lib.mkDefault 20;
     };
 
     time.timeZone = "Europe/Berlin";

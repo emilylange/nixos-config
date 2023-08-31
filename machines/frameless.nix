@@ -15,7 +15,6 @@
     };
     lanzaboote = {
       enable = true;
-      configurationLimit = 20;
       pkiBundle = "/etc/secureboot";
     };
     initrd = {
