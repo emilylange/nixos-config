@@ -4,6 +4,8 @@
   services.openssh = {
     enable = true;
 
+    settings.PasswordAuthentication = false;
+
     ## overwrite default `AuthorizedKeysFile` locations to only include
     ## `/etc/ssh/authorized_keys.d/%u` and prohibit others like `%h/.ssh/authorized_keys`.
     authorizedKeysFiles = lib.mkForce [
