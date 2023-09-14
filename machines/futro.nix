@@ -138,6 +138,9 @@
     interfaces.internal.allowedTCPPorts = [
       4040 ## mautrix WA
     ];
+    interfaces.eth0.allowedTCPPorts = [
+      1883 ## mqtt
+    ];
   };
 
   networking.wireguard.interfaces = {
