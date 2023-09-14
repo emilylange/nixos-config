@@ -44,19 +44,30 @@
   };
 
   boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/efi";
+    };
     growPartition = true;
     kernelParams = [ "console=ttyS0" ];
-    loader.grub.device = "/dev/vda"; ## requires driver to be set to virtio in netcup dashboard
   };
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos";
-    fsType = "btrfs";
-    options = [
-      "subvol=@"
-      "noatime"
-      "compress-force=zstd"
-    ];
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-label/nixos";
+      fsType = "btrfs";
+      options = [
+        "subvol=@"
+        "noatime"
+        "compress-force=zstd"
+      ];
+    };
+
+    "/efi" = {
+      device = "/dev/disk/by-label/EFIBOOT";
+      fsType = "vfat";
+    };
   };
 
   ## gitea's internal ssh server runs on :22
