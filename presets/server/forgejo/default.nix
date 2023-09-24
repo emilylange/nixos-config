@@ -1,10 +1,10 @@
 { pkgs, config, lib, ... }:
 
 let
-  sshPort = config.services.gitea.settings.server.SSH_PORT;
+  cfg = config.services.forgejo;
 in
 {
-  services.gitea = {
+  services.forgejo = {
     enable = true;
 
     package = pkgs.forgejo.override {
@@ -12,8 +12,6 @@ in
         subPackages = [ "." "contrib/environment-to-ini" ];
       });
     };
-
-    appName = "Geklautecloud";
 
     database = {
       type = "postgres";
@@ -26,6 +24,10 @@ in
     lfs.enable = true;
 
     settings = {
+      DEFAULT = {
+        APP_NAME = "Geklautecloud";
+      };
+
       "ui.meta" = {
         AUTHOR = "Geklautecloud";
         DESCRIPTION = "A tiny Gitea/Forgejo instance";
@@ -57,7 +59,7 @@ in
         MERGES = "always";
         WIKI = "always";
 
-        ## gpg --homedir /var/lib/gitea/data/home/.gnupg
+        ## gpg --homedir /var/lib/forgejo/data/home/.gnupg
         SIGNING_EMAIL = "noreply@git.geklaute.cloud";
         SIGNING_KEY = "0361BCFE4CB85DA6";
         SIGNING_NAME = "git.geklaute.cloud";
@@ -112,11 +114,11 @@ in
       '';
     in
     [
-      "L+ '${config.services.gitea.stateDir}/custom/robots.txt' - - - - ${robots}"
-      "L+ '${config.services.gitea.stateDir}/custom/templates' - - - - ${templates}"
+      "L+ '${cfg.stateDir}/custom/robots.txt' - - - - ${robots}"
+      "L+ '${cfg.stateDir}/custom/templates' - - - - ${templates}"
     ];
 
-  systemd.services.gitea = {
+  systemd.services.forgejo = {
     serviceConfig = {
       ## GITEA__SECTION_NAME__KEY_NAME
       ## Escape `.` with `_0X2E_`
@@ -126,7 +128,7 @@ in
       EnvironmentFile = config.deployment.keys."gitea_additional_env".path;
       ## TODO: remove when https://github.com/NixOS/nixpkgs/pull/242863 is resolved
       RuntimeDirectoryMode = lib.mkForce "0755";
-    } // lib.optionalAttrs (sshPort < 1024) {
+    } // lib.optionalAttrs (cfg.settings.server.SSH_PORT < 1024) {
       AmbientCapabilities = lib.mkForce "CAP_NET_BIND_SERVICE";
       CapabilityBoundingSet = lib.mkForce "CAP_NET_BIND_SERVICE";
       PrivateUsers = lib.mkForce false;
@@ -137,7 +139,7 @@ in
       function chmod {
         if [[ "$1" == "u-w" ]]; then
           echo "Running environment-to-ini..."
-          ${config.services.gitea.package}/bin/environment-to-ini --config "$2"
+          ${cfg.package}/bin/environment-to-ini --config "$2"
         fi
 
         ## run original command
@@ -147,23 +149,23 @@ in
   };
 
   networking.firewall.allowedTCPPorts = [
-    sshPort
+    cfg.settings.server.SSH_PORT
   ];
 
   deployment.keys."gitea_database-pw" = {
-    user = config.services.gitea.user;
+    user = cfg.user;
     destDir = "/";
     keyCommand = [ "bw" "--nointeraction" "get" "password" "gkcl/gitea_database-pw" ];
   };
 
   deployment.keys."gitea_mailer-pw" = {
-    user = config.services.gitea.user;
+    user = cfg.user;
     destDir = "/";
     keyCommand = [ "bw" "--nointeraction" "get" "password" "gkcl/gitea_mailer-pw" ];
   };
 
   deployment.keys."gitea_additional_env" = {
-    user = config.services.gitea.user;
+    user = cfg.user;
     destDir = "/";
     ## ```env
     ## GITEA__mailer__HOST=

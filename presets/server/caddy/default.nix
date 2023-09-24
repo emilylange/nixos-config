@@ -66,7 +66,7 @@ in
 
         @git.geklaute.cloud host git.geklaute.cloud
         handle @git.geklaute.cloud {
-          reverse_proxy unix/${config.services.gitea.settings.server.HTTP_ADDR}
+          reverse_proxy unix/${config.services.forgejo.settings.server.HTTP_ADDR}
         }
 
         @drone.geklaute.cloud host drone.geklaute.cloud

@@ -8,7 +8,7 @@
     ../presets/server/coturn
     ../presets/server/drone
     ../presets/server/drone/server
-    ../presets/server/gitea
+    ../presets/server/forgejo
     ../presets/server/miniflux
     ../presets/server/ntfy-sh
     ../presets/server/uptime-kuma
