@@ -1,0 +1,14 @@
+diff --git a/synapse/handlers/profile.py b/synapse/handlers/profile.py
+index c2109036e..82b06d4c1 100644
+--- a/synapse/handlers/profile.py
++++ b/synapse/handlers/profile.py
+@@ -187,7 +187,8 @@ class ProfileHandler:
+             target_user.to_string(), profile, by_admin, deactivation
+         )
+ 
+-        await self._update_join_states(requester, target_user)
++        # unwanted (and might happen on accident when mistyping /myroomnick)
++        # await self._update_join_states(requester, target_user)
+ 
+     async def get_avatar_url(self, target_user: UserID) -> Optional[str]:
+         if self.hs.is_mine(target_user):
