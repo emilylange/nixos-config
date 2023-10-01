@@ -22,7 +22,6 @@
     ];
 
     environment.systemPackages = with pkgs; [
-      bandwhich ## currently broken. upstream: https://github.com/imsnif/bandwhich/pull/265
       bat ## cat alternative
       curlHTTP3
       dnsutils ## dig
@@ -34,6 +33,10 @@
       vim
       wget
     ];
+
+    programs = {
+      bandwhich.enable = true;
+    };
 
     environment.sessionVariables.EDITOR = "vim";
 
