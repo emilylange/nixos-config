@@ -8,12 +8,11 @@
     ./partials/git.nix
     ./partials/gnupg.nix
     ./partials/gtk-settings.nix
-    ./partials/i3wm.nix
     ./partials/kitty.nix
     ./partials/packages.nix
-    ./partials/polybar.nix
     ./partials/rofi.nix
     ./partials/ssh.nix
+    ./partials/sway.nix
     ./partials/vscode.nix
     ./partials/xdg.nix
     ./vars.nix ## `config.colors`

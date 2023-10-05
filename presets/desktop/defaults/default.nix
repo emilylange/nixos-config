@@ -9,7 +9,7 @@
     ./pipewire.nix
     ./scanner.nix
     ./users.nix
-    ./xorg.nix
+    ./wayland.nix
   ];
 
   boot.extraModulePackages = with config.boot.kernelPackages; [
@@ -26,6 +26,17 @@
 
   ## yubikey
   services.pcscd.enable = true;
+
+  ## display backlight
+  programs.light.enable = true;
+
+  ## battery
+  services.upower.enable = true;
+
+  services.gnome.gnome-keyring.enable = true;
+
+  ## enable Ozone (enables wayland for chromium/electron)
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   ## enable cross compilation for aarch64
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];

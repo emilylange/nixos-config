@@ -9,10 +9,10 @@
 
   config = {
     colors = {
-      black = "#000";
+      black = "#000000";
       gray = "#6e6c7e";
       pink = "#ea76cb";
-      white = "#fff";
+      white = "#ffffff";
     };
   };
 }
