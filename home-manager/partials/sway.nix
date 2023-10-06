@@ -186,13 +186,35 @@
 
         blocks = [
           {
-            block = "music";
-            format = "   $combo   |";
-            separator = "·";
-          }
-          {
             block = "net";
             format = "   $speed_down.eng(prefix_space:true, width:1) ~ $speed_up.eng(prefix_space:true, width:1)   ";
+          }
+          {
+            block = "music";
+            format = "   $play$combo.str(max_width:30)   |";
+            separator = " · ";
+            click = [
+              {
+                button = "left";
+                action = "play_pause";
+              }
+              {
+                button = "right";
+                action = "next";
+              }
+              {
+                button = "up";
+                action = "next";
+              }
+              {
+                button = "down";
+                action = "prev";
+              }
+            ];
+            icons_overrides = {
+              music_play = "Paused: ";
+              music_pause = "Playing: ";
+            };
           }
           {
             block = "cpu";
