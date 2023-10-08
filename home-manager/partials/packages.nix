@@ -7,25 +7,20 @@
     ansible-lint
     bitwarden
     bitwarden-cli
-    brightnessctl
     caddy
     colmena
-    discord
     dogdns ## has no IPv6 support :<
-    drone-cli
+    farge
     firefox
-    flameshot
-    gh
     gnome.gnome-calculator
     gnome.seahorse ## gnome keyring gui
     jq
     kubectl
     kubernetes-helm
     kustomize
-    lxappearance
     networkmanagerapplet
+    nix-output-monitor
     pavucontrol
-    piper
     rclone
     remmina
     tdesktop
@@ -35,16 +30,14 @@
     vlc
     xarchiver
     xcaddy
-    xcolor
+    xdg-utils
     xfce.xfce4-power-manager
+    xfce.xfce4-taskmanager
     xfce.xfce4-terminal
+    yq
   ];
 
   programs.go = {
-    enable = true;
-  };
-
-  programs.obs-studio = {
     enable = true;
   };
 }
