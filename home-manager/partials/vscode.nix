@@ -44,6 +44,10 @@
       "workbench.sideBar.location" = "right";
       "workbench.startupEditor" = "none";
 
+      ## seems to prevent crashes on startup under wayland
+      ## see https://github.com/NixOS/nixpkgs/issues/237978
+      "window.titleBarStyle" = "custom";
+
       nix = {
         enableLanguageServer = true;
         serverPath = lib.getExe pkgs.nil;
