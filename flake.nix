@@ -43,6 +43,7 @@
         altra = { ... }: { };
         futro = { ... }: { };
         netcup01 = { ... }: { };
+        wip = { ... }: { };
       };
 
       nixosConfigurations = {
