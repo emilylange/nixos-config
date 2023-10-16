@@ -88,7 +88,6 @@ in
         handle @vaultwarden.geklaute.cloud {
           redir /admin* /
           reverse_proxy netcup01:3080
-          reverse_proxy /notifications/hub netcup01:3012
         }
 
         @ntfy.geklaute.cloud host ntfy.geklaute.cloud
