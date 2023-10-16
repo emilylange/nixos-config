@@ -36,13 +36,6 @@
     interface = "eth0";
   };
 
-  networking.nat64 = {
-    enable = true;
-    subnet = "2a03:4000:3e:1f8:46::/96";
-    allowlist = [
-    ];
-  };
-
   boot = {
     loader = {
       systemd-boot.enable = true;
