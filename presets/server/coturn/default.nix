@@ -1,8 +1,5 @@
-{ config, self, ... }:
+{ config, ... }:
 
-let
-  publicIPv4 = self.headAddress config.networking.interfaces.eth0.ipv4;
-in
 {
   services.coturn = {
     enable = true;
@@ -10,8 +7,6 @@ in
     no-tls = true;
     no-dtls = true;
     no-cli = true;
-    listening-ips = [ publicIPv4 ];
-    relay-ips = [ publicIPv4 ];
 
     ## "VoIP traffic is all UDP"
     ## https://matrix-org.github.io/synapse/develop/turn-howto.html
@@ -37,10 +32,6 @@ in
       denied-peer-ip=198.51.100.0-198.51.100.255
       denied-peer-ip=203.0.113.0-203.0.113.255
       denied-peer-ip=240.0.0.0-255.255.255.255
-
-      # special case the turn server itself so that client->TURN->TURN->client flows work
-      # this should be one of the turn server's listening IPs
-      allowed-peer-ip=${publicIPv4}
 
       verbose
     '';

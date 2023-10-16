@@ -16,24 +16,22 @@
     "${modulesPath}/profiles/qemu-guest.nix"
   ];
 
-  networking.interfaces.eth0.ipv4.addresses = [{
-    address = "2.56.98.73";
-    prefixLength = 22;
-  }];
-
-  networking.defaultGateway = {
-    address = "2.56.96.1";
-    interface = "eth0";
-  };
-
-  networking.interfaces.eth0.ipv6.addresses = [{
-    address = "2a03:4000:3e:1f8::1";
-    prefixLength = 64;
-  }];
-
-  networking.defaultGateway6 = {
-    address = "fe80::1";
-    interface = "eth0";
+  systemd.network = {
+    enable = true;
+    networks = {
+      "10-ethernet-uplink" = {
+        matchConfig.Name = [ "en*" "eth*" ];
+        linkConfig.RequiredForOnline = "routable";
+        address = [
+          "2.56.98.73/22"
+          "2a03:4000:3e:1f8::1/64"
+        ];
+        routes = [
+          { routeConfig.Gateway = "2.56.96.1"; }
+          { routeConfig.Gateway = "fe80::1"; }
+        ];
+      };
+    };
   };
 
   boot = {
