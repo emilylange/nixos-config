@@ -134,6 +134,16 @@
           scale = "1.1";
         };
 
+        DP-3 = {
+          mode = "1920x1080@144Hz";
+          pos = "1920 0";
+        };
+
+        HDMI-A-1 = {
+          mode = "1920x1080@72Hz";
+          pos = "0 0";
+        };
+
         "*".bg = toString [
           (builtins.fetchurl {
             ## https://www.reddit.com/r/unixporn/comments/uqbky7/aqua_monochrome/
