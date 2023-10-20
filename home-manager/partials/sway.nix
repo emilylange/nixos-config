@@ -249,6 +249,7 @@
             charging_format = "   [+] $percentage.eng(prefix_space:true, width:1)   ";
             empty_format = "   [!] $percentage.eng(prefix_space:true, width:1)   ";
             missing_format = "";
+            device = "BAT1";
           }
           {
             block = "time";
