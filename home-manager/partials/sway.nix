@@ -91,7 +91,7 @@
           { app_id = "Element"; }
         ];
         "9" = [
-          { class = "org.telegram.desktop"; }
+          { app_id = "org.telegram.desktop"; }
         ];
         "10" = [
           ## TODO: figure out why vlc uses xwayland
