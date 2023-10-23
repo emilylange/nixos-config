@@ -127,16 +127,10 @@
   };
 
   systemd.services.docker.after = [ "wireguard-hass.service" ];
-  systemd.services.mautrix-whatsapp.after = [ "wireguard-internal.service" ];
-
-  less.mautrix-whatsapp.enable = true;
 
   networking.firewall = {
     allowedTCPPorts = [
       8123 ## homeassistant
-    ];
-    interfaces.internal.allowedTCPPorts = [
-      4040 ## mautrix WA
     ];
     interfaces.eth0.allowedTCPPorts = [
       1883 ## mqtt
@@ -157,29 +151,11 @@
         }
       ];
     };
-
-    internal = {
-      ips = [ "192.168.90.100/32" ];
-      privateKeyFile = config.deployment.keys."wg-internal".path;
-      peers = [
-        {
-          allowedIPs = nodes.altra.config.networking.wireguard.interfaces.internal.ips;
-          endpoint = with nodes.altra.config.networking; "[${self.headAddress interfaces.eth0.ipv6}]:${toString wireguard.interfaces.internal.listenPort}";
-          publicKey = config.redacted.altra.wireguard.internal.publicKey;
-          persistentKeepalive = 25;
-        }
-      ];
-    };
   };
 
   deployment.keys."wg-hass" = {
     destDir = "/";
     keyCommand = [ "bw" "--nointeraction" "get" "password" "gkcl/futro/wireguard/hass/privateKey" ];
-  };
-
-  deployment.keys."wg-internal" = {
-    destDir = "/";
-    keyCommand = [ "bw" "--nointeraction" "get" "password" "gkcl/futro/wireguard/internal/privateKey" ];
   };
 
   system.stateVersion = "22.05";

@@ -15,10 +15,6 @@
       enable_registration = false;
       allow_device_name_lookup_over_federation = false;
 
-      app_service_config_files = [
-        config.deployment.keys."synapse-appservice-mautrix-whatsapp".path
-      ];
-
       max_upload_size = "100M";
 
       suppress_key_server_warning = true;
@@ -90,12 +86,6 @@
   ## CREATE USER "matrix-synapse";
   ## createdb --encoding=UTF8 --locale=C --template=template0 --owner=matrix-synapse matrix-synapse
   services.postgresql.enable = true;
-
-  deployment.keys."synapse-appservice-mautrix-whatsapp" = {
-    destDir = "/";
-    keyCommand = [ "bw" "--nointeraction" "get" "notes" "gkcl/matrix.geklautecloud.de/appservice/mautrix-whatsapp" ];
-    user = config.systemd.services.matrix-synapse.serviceConfig.User;
-  };
 
   deployment.keys."synapse-extraConf.json" = {
     destDir = "/";
