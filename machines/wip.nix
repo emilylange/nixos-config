@@ -54,6 +54,7 @@
     "d ${config.services.postgresql.dataDir} 0700 postgres postgres -"
   ];
 
+  networking.useDHCP = false;
   networking.usePredictableInterfaceNames = true;
   systemd.network = {
     enable = true;

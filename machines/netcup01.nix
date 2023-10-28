@@ -19,6 +19,7 @@ in
     "${modulesPath}/profiles/qemu-guest.nix"
   ];
 
+  networking.useDHCP = false;
   systemd.network = {
     enable = true;
     networks = {
