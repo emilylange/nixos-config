@@ -119,9 +119,9 @@ in
       '';
 
       extraStopCommands = ''
-        ip46tables -D FORWARD -i ${iface} -o ${iface} -j REJECT
-        ip46tables -t nat -D INPUT -i ${iface} -j SNAT -d ${external-ipv4} --to ${external-ipv4}
-        ip46tables -t mangle -D FORWARD -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+        iptables -D FORWARD -i ${iface} -o ${iface} -j REJECT
+        iptables -t nat -D INPUT -i ${iface} -j SNAT -d ${external-ipv4} --to ${external-ipv4}
+        iptables -t mangle -D FORWARD -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
       '';
 
       allowedUDPPorts = [
