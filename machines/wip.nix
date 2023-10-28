@@ -44,6 +44,16 @@
 { pkgs, config, ... }:
 
 {
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql_15;
+    dataDir = "/ext4/postgresql/${config.services.postgresql.package.psqlSchema}";
+  };
+
+  systemd.tmpfiles.rules = [
+    "d ${config.services.postgresql.dataDir} 0700 postgres postgres -"
+  ];
+
   networking.usePredictableInterfaceNames = true;
   systemd.network = {
     enable = true;
