@@ -106,11 +106,30 @@ in
   };
   services.qemuGuest.enable = true;
 
-  networking.firewall.allowedUDPPorts = [
-    config.networking.wireguard.interfaces.hass.listenPort
-    config.networking.wireguard.interfaces.internal.listenPort
-    wg-ipv4-port
-  ];
+  networking.firewall =
+    let
+      iface = "wg-ipv4";
+      external-ipv4 = "2.56.98.73";
+    in
+    {
+      extraCommands = ''
+        iptables -A FORWARD -i ${iface} -o ${iface} -j REJECT
+        iptables -t nat -I INPUT -i ${iface} -j SNAT -d ${external-ipv4} --to ${external-ipv4}
+        iptables -t mangle -A FORWARD -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+      '';
+
+      extraStopCommands = ''
+        ip46tables -D FORWARD -i ${iface} -o ${iface} -j REJECT
+        ip46tables -t nat -D INPUT -i ${iface} -j SNAT -d ${external-ipv4} --to ${external-ipv4}
+        ip46tables -t mangle -D FORWARD -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+      '';
+
+      allowedUDPPorts = [
+        config.networking.wireguard.interfaces.hass.listenPort
+        config.networking.wireguard.interfaces.internal.listenPort
+        wg-ipv4-port
+      ];
+    };
 
   networking.wireguard.interfaces = {
     internal = {
