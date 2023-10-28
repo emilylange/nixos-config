@@ -1,5 +1,8 @@
 { config, pkgs, modulesPath, nodes, self, ... }:
 
+let
+  wg-ipv4-port = 51825;
+in
 {
   imports = [
     ../presets/common/docker
@@ -29,6 +32,38 @@
         routes = [
           { routeConfig.Gateway = "2.56.96.1"; }
           { routeConfig.Gateway = "fe80::1"; }
+        ];
+      };
+
+      "20-wireguard-ipv4" = {
+        matchConfig.Name = "wg-ipv4";
+        address = [ "192.168.178.1/24" ];
+        networkConfig = {
+          IPMasquerade = "ipv4";
+          IPForward = true;
+        };
+      };
+    };
+
+    netdevs = {
+      "20-wireguard-ipv4" = {
+        netdevConfig = {
+          Kind = "wireguard";
+          Name = "wg-ipv4";
+        };
+
+        wireguardConfig = {
+          PrivateKeyFile = config.deployment.keys."wg-ipv4".path;
+          ListenPort = wg-ipv4-port;
+        };
+
+        wireguardPeers = [
+          {
+            wireguardPeerConfig = {
+              PublicKey = config.redacted.wip.wireguard.ipv4.publicKey;
+              AllowedIPs = [ "192.168.178.2" ];
+            };
+          }
         ];
       };
     };
@@ -73,6 +108,7 @@
   networking.firewall.allowedUDPPorts = [
     config.networking.wireguard.interfaces.hass.listenPort
     config.networking.wireguard.interfaces.internal.listenPort
+    wg-ipv4-port
   ];
 
   networking.wireguard.interfaces = {
@@ -114,6 +150,12 @@
   deployment.keys."wg-hass" = {
     destDir = "/";
     keyCommand = [ "bw" "--nointeraction" "get" "password" "gkcl/netcup01/wireguard/hass/privateKey" ];
+  };
+
+  deployment.keys."wg-ipv4" = {
+    destDir = "/";
+    user = "systemd-network";
+    keyCommand = [ "bw" "--nointeraction" "get" "password" "gkcl/netcup01/wireguard/ipv4/privateKey" ];
   };
 
   services.terraform-backend = {

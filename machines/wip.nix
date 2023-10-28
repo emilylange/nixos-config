@@ -52,7 +52,7 @@
         matchConfig.Name = [ "en*" "eth*" ];
         linkConfig.RequiredForOnline = "routable";
         address = [
-          "2a01:4f8:190:441a::/64"
+          "2a01:4f8:190:441a::ffff/64"
         ];
         routes = [
           { routeConfig.Gateway = "fe80::1"; }
@@ -69,6 +69,36 @@
             Destination = "2a01:4f8:190:441a::/64";
           };
         }];
+      };
+
+      "20-wireguard-ipv4" = {
+        matchConfig.Name = "wg-ipv4";
+        address = [ "192.168.178.2/24" ];
+        gateway = [ "192.168.178.1" ];
+      };
+    };
+
+    netdevs = {
+      "20-wireguard-ipv4" = {
+        netdevConfig = {
+          Kind = "wireguard";
+          Name = "wg-ipv4";
+        };
+
+        wireguardConfig = {
+          PrivateKeyFile = config.deployment.keys."wg-ipv4".path;
+        };
+
+        wireguardPeers = [
+          {
+            wireguardPeerConfig = {
+              PublicKey = config.redacted.netcup01.wireguard.ipv4.publicKey;
+              AllowedIPs = [ "0.0.0.0/0" ];
+              Endpoint = "netcup01.gkcl.de:51825";
+              PersistentKeepalive = 25;
+            };
+          }
+        ];
       };
     };
   };
@@ -118,7 +148,7 @@
   boot.initrd.systemd.enable = true;
   boot.initrd.systemd.emergencyAccess = true;
   boot.initrd.systemd.network.enable = true;
-  boot.initrd.systemd.network.networks = config.systemd.network.networks;
+  boot.initrd.systemd.network.networks = { inherit (config.systemd.network.networks) "10-ethernet-uplink"; };
   boot.initrd.systemd.initrdBin = [ pkgs.iproute2 ];
 
   boot.initrd.network.ssh = {
@@ -141,6 +171,12 @@
     "r8169"
     "virtio-net"
   ];
+
+  deployment.keys."wg-ipv4" = {
+    destDir = "/";
+    user = "systemd-network";
+    keyCommand = [ "bw" "--nointeraction" "get" "password" "gkcl/wip/wireguard/ipv4/privateKey" ];
+  };
 
   hardware.cpu.amd.updateMicrocode = true;
 
