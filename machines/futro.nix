@@ -145,7 +145,7 @@
         {
           ## TODO: allowedIps has to end with `.0/24`, so maybe add some cird parsing
           allowedIPs = [ "192.168.11.0/24" ];
-          endpoint = with nodes.netcup01.config.networking; "[${self.headAddress interfaces.eth0.ipv6}]:${toString wireguard.interfaces.hass.listenPort}";
+          endpoint = "netcup01.gkcl.de:${toString nodes.netcup01.config.networking.wireguard.interfaces.hass.listenPort}";
           publicKey = config.redacted.netcup01.wireguard.hass.publicKey;
           persistentKeepalive = 25;
         }

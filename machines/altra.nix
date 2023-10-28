@@ -74,7 +74,7 @@
       {
         allowedIPs = nodes.netcup01.config.networking.wireguard.interfaces.internal.ips;
         publicKey = config.redacted.netcup01.wireguard.internal.publicKey;
-        endpoint = with nodes.netcup01.config.networking; "[${self.headAddress interfaces.eth0.ipv6}]:${toString wireguard.interfaces.internal.listenPort}";
+        endpoint = "netcup01.gkcl.de:${toString nodes.netcup01.config.networking.wireguard.interfaces.internal.listenPort}";
       }
     ];
   };
