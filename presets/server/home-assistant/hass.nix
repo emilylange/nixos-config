@@ -13,6 +13,7 @@
       "radio_browser" ## needed for onboarding
     ];
     config = {
+      inherit (config.redacted.global.home-assistant) auth_providers;
       default_config = { };
       homeassistant = {
         unit_system = "metric";
