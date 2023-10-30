@@ -44,6 +44,17 @@
 { pkgs, config, ... }:
 
 {
+  imports = [
+    ../presets/server/caddy
+    ../presets/server/drone
+    ../presets/server/drone/server
+    ../presets/server/forgejo
+    ../presets/server/miniflux
+    ../presets/server/ntfy-sh
+    ../presets/server/uptime-kuma
+    ../presets/server/vaultwarden
+  ];
+
   services.postgresql = {
     enable = true;
     package = pkgs.postgresql_15;
@@ -53,6 +64,9 @@
   systemd.tmpfiles.rules = [
     "d ${config.services.postgresql.dataDir} 0700 postgres postgres -"
   ];
+
+  ## forgejo's internal ssh server runs on :22
+  services.openssh.ports = [ 22222 ];
 
   networking.useDHCP = false;
   networking.usePredictableInterfaceNames = true;

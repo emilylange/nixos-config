@@ -7,7 +7,6 @@ in
 {
   systemd.services.drone-server = {
     wantedBy = [ "multi-user.target" ];
-    after = [ "docker.service" ];
 
     environment = {
       DRONE_GITEA_SERVER = "https://git.geklaute.cloud";

@@ -7,15 +7,7 @@ in
   imports = [
     ../presets/common/docker
     ../presets/server/acme-dns
-    ../presets/server/caddy
     ../presets/server/coturn
-    ../presets/server/drone
-    ../presets/server/drone/server
-    ../presets/server/forgejo
-    ../presets/server/miniflux
-    ../presets/server/ntfy-sh
-    ../presets/server/uptime-kuma
-    ../presets/server/vaultwarden
     "${modulesPath}/profiles/qemu-guest.nix"
   ];
 
@@ -97,7 +89,7 @@ in
     };
   };
 
-  ## gitea's internal ssh server runs on :22
+  ## forgejo's internal ssh server (which we port forward) runs on :22
   services.openssh.ports = [ 22222 ];
 
   zramSwap = {
