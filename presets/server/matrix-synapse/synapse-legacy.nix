@@ -3,6 +3,7 @@
 {
   services.matrix-synapse = {
     enable = true;
+    log.root.level = "WARNING";
     settings = {
       server_name = "matrix.geklautecloud.de";
       admin_contact = "mailto:matrix-synapse-admin@geklautecloud.de";
