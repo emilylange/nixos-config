@@ -36,7 +36,7 @@ in
             respond /server `{ "m.server": "matrix.geklautecloud.de:443" }`
             respond 404
           }
-          reverse_proxy ${altraInternal}:28008
+          reverse_proxy [::1]:28008
         }
 
         handle {

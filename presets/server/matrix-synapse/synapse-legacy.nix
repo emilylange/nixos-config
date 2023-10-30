@@ -23,8 +23,12 @@
         { server_name = "matrix.org"; }
       ];
 
+      database.args = {
+        user = "matrix-synapse";
+        database = "matrix-synapse-legacy";
+      };
+
       listeners = [{
-        bind_addresses = [ (lib.head (lib.splitString "/" (lib.head config.networking.wireguard.interfaces.internal.ips))) ];
         port = 28008;
         tls = false;
         type = "http";
@@ -79,12 +83,8 @@
     ];
   };
 
-  networking.firewall.interfaces.internal.allowedTCPPorts = [
-    28008
-  ];
-
   ## CREATE USER "matrix-synapse";
-  ## createdb --encoding=UTF8 --locale=C --template=template0 --owner=matrix-synapse matrix-synapse
+  ## createdb --encoding=UTF8 --locale=C --template=template0 --owner=matrix-synapse matrix-synapse-legacy
   services.postgresql.enable = true;
 
   deployment.keys."synapse-extraConf.json" = {
