@@ -52,6 +52,7 @@
     ../presets/server/miniflux
     ../presets/server/ntfy-sh
     ../presets/server/uptime-kuma
+    ../presets/server/matrix-synapse/sliding-sync-proxy.nix
     ../presets/server/vaultwarden
   ];
 
