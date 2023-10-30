@@ -12,6 +12,12 @@ in
         hostPath = hostConf.deployment.keys."mx-synapse.indeednotjames.com-extraConf.json".path;
         isReadOnly = true;
       };
+
+      "host-postgres-unix" = {
+        hostPath = "/run/postgresql";
+        mountPoint = "/run/postgresql";
+        isReadOnly = true;
+      };
     };
 
     config = { config, ... }: {
@@ -37,8 +43,14 @@ in
             { server_name = "matrix.org"; }
           ];
 
+          ## createuser matrix-synapse
+          ## createdb --encoding=UTF8 --locale=C --template=template0 --owner=matrix-synapse matrix-synapse-indeednotjames
+          database.args = {
+            user = "matrix-synapse";
+            database = "matrix-synapse-indeednotjames";
+          };
+
           listeners = [{
-            bind_addresses = [ (lib.head (lib.splitString "/" (lib.head hostConf.networking.wireguard.interfaces.internal.ips))) ];
             port = 18008;
             tls = false;
             type = "http";
@@ -93,22 +105,11 @@ in
         ];
       };
 
-      ## createuser matrix-synapse
-      ## createdb --encoding=UTF8 --locale=C --template=template0 --owner=matrix-synapse matrix-synapse
-      services.postgresql = {
-        enable = true;
-        settings.listen_addresses = lib.mkForce "127.0.0.2";
-      };
-
       networking.hostName = "mx-synapse-indeednotjames";
       nixpkgs.pkgs = pkgs;
       system.stateVersion = "22.11";
     };
   };
-
-  networking.firewall.interfaces.internal.allowedTCPPorts = [
-    18008
-  ];
 
   deployment.keys."mx-synapse.indeednotjames.com-extraConf.json" = {
     destDir = "/";

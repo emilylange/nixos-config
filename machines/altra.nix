@@ -19,7 +19,6 @@
 
 {
   imports = [
-    ../presets/server/matrix-synapse
     ../presets/server/nextcloud
     (modulesPath + "/profiles/qemu-guest.nix")
   ];

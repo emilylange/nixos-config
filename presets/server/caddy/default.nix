@@ -152,7 +152,7 @@ in
 
         @mx-synapse host mx-synapse.indeednotjames.com
         handle @mx-synapse {
-          reverse_proxy ${altraInternal}:18008
+          reverse_proxy [::1]:18008
         }
 
         @mx-sliding-sync host mx-sliding-sync.indeednotjames.com

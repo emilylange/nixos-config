@@ -53,6 +53,7 @@
     ../presets/server/ntfy-sh
     ../presets/server/uptime-kuma
     ../presets/server/matrix-synapse/sliding-sync-proxy.nix
+    ../presets/server/matrix-synapse/synapse-container.nix
     ../presets/server/matrix-synapse/synapse-legacy.nix
     ../presets/server/vaultwarden
   ];
