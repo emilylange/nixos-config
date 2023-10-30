@@ -108,19 +108,30 @@ in
 
   networking.firewall =
     let
-      iface = "wg-ipv4";
       external-ipv4 = "2.56.98.73";
+      internal-interface = "wg-ipv4";
+      target-ipv4 = "192.168.178.2";
     in
     {
       extraCommands = ''
-        iptables -A FORWARD -i ${iface} -o ${iface} -j REJECT
-        iptables -t nat -I INPUT -i ${iface} -j SNAT -d ${external-ipv4} --to ${external-ipv4}
+        iptables -t nat -A PREROUTING -i ${internal-interface} -j MARK --set-mark 1
+        iptables -t nat -A PREROUTING -d ${external-ipv4}/32 -p tcp --dport 80 -j DNAT --to-destination ${target-ipv4}
+        iptables -t nat -A PREROUTING -d ${external-ipv4}/32 -p tcp --dport 443 -j DNAT --to-destination ${target-ipv4}
+        iptables -t nat -A PREROUTING -d ${external-ipv4}/32 -p udp --dport 443 -j DNAT --to-destination ${target-ipv4}
+
+        iptables -t nat -A POSTROUTING -o ${internal-interface} -m mark --mark 1 -j SNAT --to-source ${external-ipv4}
+
         iptables -t mangle -A FORWARD -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
       '';
 
       extraStopCommands = ''
-        iptables -D FORWARD -i ${iface} -o ${iface} -j REJECT
-        iptables -t nat -D INPUT -i ${iface} -j SNAT -d ${external-ipv4} --to ${external-ipv4}
+        iptables -t nat -D PREROUTING -i ${internal-interface} -j MARK --set-mark 1
+        iptables -t nat -D PREROUTING -d ${external-ipv4}/32 -p tcp --dport 80 -j DNAT --to-destination ${target-ipv4}
+        iptables -t nat -D PREROUTING -d ${external-ipv4}/32 -p tcp --dport 443 -j DNAT --to-destination ${target-ipv4}
+        iptables -t nat -D PREROUTING -d ${external-ipv4}/32 -p udp --dport 443 -j DNAT --to-destination ${target-ipv4}
+
+        iptables -t nat -D POSTROUTING -o ${internal-interface} -m mark --mark 1 -j SNAT --to-source ${external-ipv4}
+
         iptables -t mangle -D FORWARD -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
       '';
 
