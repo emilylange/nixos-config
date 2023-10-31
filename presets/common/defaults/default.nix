@@ -7,9 +7,9 @@
 
   config = {
     networking.nameservers = [
-      "2a0f:fc80::"
-      "2a0f:fc81::"
-      "193.110.81.0"
+      "2a0f:fc80::ffff" # open.dns0.eu
+      "2a0f:fc81::ffff" # open.dns0.eu
+      "193.110.81.254" # open.dns0.eu
     ];
 
     ## enable dns resolution for podman networks, specified here,
