@@ -1,4 +1,4 @@
-{ lib, pkgs, redacted, ... }:
+{ lib, pkgs, redacted, config, ... }:
 
 {
   imports = [
@@ -6,11 +6,21 @@
   ];
 
   config = {
-    networking.nameservers = [
-      "2a0f:fc80::ffff" # open.dns0.eu
-      "2a0f:fc81::ffff" # open.dns0.eu
-      "193.110.81.254" # open.dns0.eu
-    ];
+    networking.nameservers =
+      if config.services.resolved.enable then [
+        "2a0f:fc80::ffff#open.dns0.eu"
+        "2a0f:fc81::ffff#open.dns0.eu"
+        "193.110.81.254#open.dns0.eu"
+      ] else [
+        "2a0f:fc80::ffff" # open.dns0.eu
+        "2a0f:fc81::ffff" # open.dns0.eu
+        "193.110.81.254" # open.dns0.eu
+      ];
+
+    services.resolved = {
+      fallbackDns = config.networking.nameservers;
+      extraConfig = "DNSOverTLS=yes";
+    };
 
     ## enable dns resolution for podman networks, specified here,
     ## because `virtualisation.oci-containers` defaults to podman
