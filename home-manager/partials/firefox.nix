@@ -12,7 +12,7 @@
           "browser.toolbars.bookmarks.visibility" = "never";
           "network.protocol-handler.external.mailto" = false; ## hide 'Add "$x" as an application for mailto links?' bar
           "network.trr.mode" = 2;
-          "network.trr.uri" = "https://dns0.eu";
+          "network.trr.uri" = "https://open.dns0.eu";
         } // lib.optionalAttrs (osConfig.networking.hostName == "ryzen") {
           ## enable high refresh rate for desktop
           "layout.frame_rate" = 144;
