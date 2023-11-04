@@ -1,8 +1,5 @@
-{ config, nodes, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 
-let
-  altraInternal = lib.head (lib.splitString "/" (lib.head nodes.altra.config.networking.wireguard.interfaces.internal.ips));
-in
 {
   services.caddy = {
     enable = true;
@@ -49,14 +46,32 @@ in
 
         @geklaute.cloud host geklaute.cloud
         handle @geklaute.cloud {
-          reverse_proxy https://${altraInternal}:443 {
-            header_up Host "geklaute.cloud"
-            transport http {
-              tls_server_name "geklaute.cloud"
-              ## TODO: remove `tls_insecure_skip_verify`
-              tls_insecure_skip_verify
-            }
+          @forbidden {
+            path /.htaccess /.user.ini
+            path /3rdparty*
+            path /AUTHORS /COPYING /README
+            path /build*
+            path /config*
+            path /console.php
+            path /data*
+            path /lib*
+            path /occ*
+            path /templates*
+            path /tests*
           }
+          redir @forbidden https://geklaute.cloud/login
+
+          file_server
+          root * ${config.services.nextcloud.package}
+          php_fastcgi unix/${config.services.phpfpm.pools.nextcloud.socket} {
+            ## hide index.php from uri
+            env front_controller_active true
+
+            header_down Strict-Transport-Security "max-age=15552000;"
+          }
+
+          rewrite /.well-known/carddav /remote.php/dav
+          rewrite /.well-known/caldav /remote.php/dav
         }
 
         @rss.geklaute.cloud host rss.geklaute.cloud

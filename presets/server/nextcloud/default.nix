@@ -23,7 +23,6 @@
       dbhost = "/run/postgresql";
 
       defaultPhoneRegion = "DE";
-      trustedProxies = [ "192.168.178.1/24" ];
 
       adminuser = "admin";
       adminpassFile = config.deployment.keys."nextcloud-adminpass".path;
@@ -73,47 +72,6 @@
     "listen.group" = config.services.caddy.group;
   };
 
-  services.caddy = {
-    enable = true;
-    configFile = pkgs.writeTextDir "Caddyfile" ''
-      ${config.services.nextcloud.hostName} {
-        bind ${lib.head (lib.splitString "/" (lib.head config.networking.wireguard.interfaces.internal.ips))}
-        tls internal
-
-        log
-        header -Server
-
-        @forbidden {
-          path /.htaccess /.user.ini
-          path /3rdparty*
-          path /AUTHORS /COPYING /README
-          path /build*
-          path /config*
-          path /console.php
-          path /data*
-          path /lib*
-          path /occ*
-          path /templates*
-          path /tests*
-        }
-        redir @forbidden https://geklaute.cloud/login
-
-        file_server
-        root * ${config.services.nextcloud.package}
-        php_fastcgi unix/${config.services.phpfpm.pools.nextcloud.socket} {
-          ## hide index.php from uri
-          env front_controller_active true
-
-          trusted_proxies 192.168.178.1/24
-          header_down Strict-Transport-Security "max-age=15552000;"
-        }
-
-        rewrite /.well-known/carddav /remote.php/dav
-        rewrite /.well-known/caldav /remote.php/dav
-      }
-    '' + /Caddyfile;
-  };
-
   services.postgresql = {
     enable = true;
     ensureDatabases = [
@@ -130,9 +88,4 @@
     requires = [ "postgresql.service" ];
     after = [ "postgresql.service" ];
   };
-
-  networking.firewall.interfaces.internal.allowedTCPPorts = [
-    80
-    443
-  ];
 }

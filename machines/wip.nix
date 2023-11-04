@@ -50,6 +50,7 @@
     ../presets/server/drone/server
     ../presets/server/forgejo
     ../presets/server/miniflux
+    ../presets/server/nextcloud
     ../presets/server/ntfy-sh
     ../presets/server/uptime-kuma
     ../presets/server/matrix-synapse/sliding-sync-proxy.nix
