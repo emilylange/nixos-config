@@ -1,4 +1,4 @@
-{ config, pkgs, modulesPath, nodes, self, ... }:
+{ config, pkgs, modulesPath, nodes, ... }:
 
 let
   wg-ipv4-port = 51825;
@@ -129,25 +129,11 @@ in
 
       allowedUDPPorts = [
         config.networking.wireguard.interfaces.hass.listenPort
-        config.networking.wireguard.interfaces.internal.listenPort
         wg-ipv4-port
       ];
     };
 
   networking.wireguard.interfaces = {
-    internal = {
-      ips = [ "192.168.90.55/32" ];
-      listenPort = 23764;
-      privateKeyFile = config.deployment.keys."wg-internal".path;
-      peers = [
-        {
-          allowedIPs = nodes.altra.config.networking.wireguard.interfaces.internal.ips;
-          endpoint = with nodes.altra.config.networking; "[${self.headAddress interfaces.eth0.ipv6}]:${toString wireguard.interfaces.internal.listenPort}";
-          publicKey = config.redacted.altra.wireguard.internal.publicKey;
-        }
-      ];
-    };
-
     hass = {
       ips = [ "192.168.11.20/24" ];
       listenPort = 31921;
@@ -163,11 +149,6 @@ in
         }
       ];
     };
-  };
-
-  deployment.keys."wg-internal" = {
-    destDir = "/";
-    keyCommand = [ "bw" "--nointeraction" "get" "password" "gkcl/netcup01/wireguard/internal/privateKey" ];
   };
 
   deployment.keys."wg-hass" = {

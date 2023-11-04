@@ -40,7 +40,6 @@ local build(attr) = {
 [
   build('.#nixosConfigurations.%s.config.system.build.toplevel' % conf)
   for conf in [
-    'altra',
     'frameless',
     'futro',
     'netcup01',

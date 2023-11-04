@@ -25,7 +25,6 @@
       colmenaHive = inputs.colmena.lib.makeHive {
         meta = {
           nixpkgs = pkgs;
-          nodeNixpkgs.altra = import inputs."nixpkgs-small" { system = "aarch64-linux"; overlays = import ./overlays; };
           specialArgs = {
             inherit inputs self;
             inherit (inputs) redacted;
@@ -40,7 +39,6 @@
           ] ++ (import ./modules/module-list.nix);
         };
 
-        altra = { ... }: { };
         futro = { ... }: { };
         netcup01 = { ... }: { };
         wip = { ... }: { };

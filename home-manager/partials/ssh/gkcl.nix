@@ -12,10 +12,6 @@ builtins.mapAttrs
       port = 22222;
     };
 
-    "altra" = {
-      hostname = "2603:c020:800b:36ff::abcd";
-    };
-
     "futro" = {
       hostname = "192.168.10.12";
     };
