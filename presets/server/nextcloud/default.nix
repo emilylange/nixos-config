@@ -1,4 +1,4 @@
-{ pkgs, config, lib, redacted, ... }:
+{ pkgs, config, redacted, ... }:
 
 {
   services.nextcloud = {
@@ -38,13 +38,6 @@
 
     globalProfiles = false;
     enableImagemagick = false;
-  };
-
-  systemd.services.nextcloud-previewgenerator = {
-    serviceConfig.Type = "oneshot";
-    serviceConfig.ExecStart = "${config.services.nextcloud.occ}/bin/nextcloud-occ preview:pre-generate";
-    serviceConfig.User = "nextcloud";
-    startAt = "*:0/10";
   };
 
   services.redis.servers.nextcloud = {
