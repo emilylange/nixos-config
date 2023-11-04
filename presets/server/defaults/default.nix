@@ -21,5 +21,7 @@
   ## TODO: investigate why certain packages fail to build
   environment.noXlibs = false;
 
+  boot.enableContainers = true;
+
   networking.hostName = lib.mkDefault name;
 }
