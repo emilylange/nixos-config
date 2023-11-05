@@ -13,7 +13,6 @@
       "radio_browser" ## needed for onboarding
     ];
     config = {
-      inherit (config.redacted.global.home-assistant) auth_providers;
       default_config = { };
       homeassistant = {
         unit_system = "metric";
@@ -21,6 +20,8 @@
         latitude = "!secret latitude";
         longitude = "!secret longitude";
         elevation = "!secret elevation";
+
+        inherit (config.redacted.global.home-assistant) auth_providers;
       };
       recorder.db_url = "postgresql://@/hass";
       light = [
