@@ -127,6 +127,10 @@
 
           "XF86MonBrightnessDown" = "exec light -U 5";
           "XF86MonBrightnessUp" = "exec light -A 5";
+
+          ## until https://github.com/nix-community/home-manager/pull/4636 is merged
+          "${modifier}+0" = "workspace number 10";
+          "${modifier}+Shift+0" = "move container to workspace number 10";
         };
 
       output = {
