@@ -182,6 +182,7 @@
 
   boot.initrd.network.ssh = {
     enable = true;
+    port = builtins.head config.services.openssh.ports;
     hostKeys = [
       "/etc/secrets/initrd/ssh_host_ed25519_key"
     ];
