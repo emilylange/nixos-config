@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
 let
   ## Yes, I am aware `64:ff9b:1::/48` from rfc8215 has a different purpose
@@ -7,6 +7,7 @@ in
 {
   virtualisation.docker = {
     enable = true;
+    enableOnBoot = config.isServer;
     autoPrune.enable = true;
 
     daemon.settings = {
