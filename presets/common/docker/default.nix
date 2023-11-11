@@ -10,10 +10,6 @@ in
     autoPrune.enable = true;
 
     daemon.settings = {
-      registry-mirrors = [
-        "https://registry.ipv6.docker.com"
-      ];
-
       ## Note: docker's internal dns silently ignores any IPv6 nameservers
       ## in `/etc/resolv.conf` (`config.networking.nameservers`) or configured here
       ##
