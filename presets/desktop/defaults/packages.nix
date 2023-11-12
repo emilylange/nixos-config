@@ -37,5 +37,10 @@
   networking.networkmanager = {
     enable = true;
     dns = "none"; ## do not overwrite /etc/resolv.conf
+
+    ## randomize mac addresses on each connect (and scan) by default
+    ethernet.macAddress = "random";
+    wifi.macAddress = "random";
+    wifi.scanRandMacAddress = true;
   };
 }
