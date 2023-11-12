@@ -20,11 +20,13 @@
       bars = [{
         statusCommand = "i3status-rs ~/.config/i3status-rust/config-default.toml";
         position = "top";
+
         fonts = {
           names = [ "MesloLGS NF" ];
           style = "Regular";
           size = 9.0;
         };
+
         colors = with config.colors; {
           background = black;
           inactiveWorkspace = {
@@ -48,6 +50,10 @@
             text = pink;
           };
         };
+
+        extraConfig = ''
+          wrap_scroll yes
+        '';
       }];
 
       colors = with config.colors;
