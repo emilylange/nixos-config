@@ -1,5 +1,8 @@
 { config, lib, pkgs, ... }:
 
+let
+  waylock = "${lib.getExe pkgs.waylock} -fork-on-lock -init-color 0x6c71c4";
+in
 {
   wayland.windowManager.sway = {
     enable = true;
@@ -133,6 +136,8 @@
 
           "XF86MonBrightnessDown" = "exec light -U 5";
           "XF86MonBrightnessUp" = "exec light -A 5";
+
+          "${windows}+l" = "exec ${waylock}";
 
           ## until https://github.com/nix-community/home-manager/pull/4636 is merged
           "${modifier}+0" = "workspace number 10";
@@ -269,5 +274,23 @@
         ];
       };
     };
+  };
+
+  services.swayidle = let swaymsg = lib.getExe' config.wayland.windowManager.sway.package "swaymsg"; in {
+    enable = true;
+    events = [
+      { event = "before-sleep"; command = waylock; }
+    ];
+    timeouts = [
+      {
+        timeout = 300;
+        command = waylock;
+      }
+      {
+        timeout = 600;
+        command = "${swaymsg} 'output * power off'";
+        resumeCommand = "${swaymsg} 'output * power on'";
+      }
+    ];
   };
 }

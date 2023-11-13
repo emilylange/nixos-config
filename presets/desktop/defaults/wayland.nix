@@ -26,4 +26,11 @@
     };
   };
 
+  security.pam.services.waylock = { };
+
+  ## React immediatly to lid events after resume, instead of waiting some arbitrary 30s,
+  ## in order to allow quick re-suspend-ing by closing the lid again.
+  services.logind.extraConfig = ''
+    HoldoffTimeoutSec=0
+  '';
 }
