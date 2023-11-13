@@ -33,6 +33,7 @@
       thunar-media-tags-plugin
     ];
   };
+  services.gvfs.enable = true;
 
   networking.networkmanager = {
     enable = true;
