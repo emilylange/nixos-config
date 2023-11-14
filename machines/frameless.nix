@@ -4,7 +4,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.lanzaboote.nixosModules.lanzaboote
-    inputs.nixos-hardware.nixosModules.framework
+    inputs.nixos-hardware.nixosModules.framework-11th-gen-intel
   ];
 
   boot = {
