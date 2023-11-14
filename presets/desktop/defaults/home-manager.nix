@@ -1,4 +1,4 @@
-{ config, inputs, redacted, ... }:
+{ inputs, redacted, ... }:
 
 {
   imports = [
@@ -11,16 +11,22 @@
 
   home-manager = {
     useGlobalPkgs = true;
-    ## Move existing files on activation by appending the
-    ## given file extension rather than exiting with an error
-    backupFileExtension = config.system.nixos.version;
-
     extraSpecialArgs = { inherit inputs redacted; };
 
     users.me = { ... }: {
       imports = [
         ../../../home-manager
       ];
+
+      # forcefully overwrite some files that often cause conflicts when switching generations. E.g.
+      #
+      # > Existing file '/home/<user>/.config/gtk-3.0/bookmarks' would be clobbered by backing up '/home/<user>/.config/gtk-3.0/bookmarks'
+      # > Please move the above files and try again or use 'home-manager switch -b backup' to back up existing files automatically.
+      #
+      # I've previously opted to set `backupFileExtension = config.system.nixos.version;` but this usually only delayed the very same
+      # error by one switch (assuming no flake bump happened in the meantime).
+      xdg.configFile."gtk-3.0/bookmarks".force = true;
+      xdg.configFile."mimeapps.list".force = true;
     };
   };
 }
