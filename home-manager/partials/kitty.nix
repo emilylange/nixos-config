@@ -10,7 +10,5 @@
       scrollback_lines = 10000; ## increase from default 2000 lines
       scrollback_pager_history_size = 50; ## [in MB], only when using pager
     };
-
-    theme = "Default";
   };
 }

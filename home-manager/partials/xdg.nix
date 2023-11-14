@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ lib, ... }:
 
 let
   listOfKeysToAttrs = keys: value: builtins.listToAttrs (map (key: lib.nameValuePair key value) keys);
@@ -19,15 +19,16 @@ in
       "x-scheme-handler/https"
     ] "firefox.desktop";
 
-    ## pretty silly way to remove all unwanted associations :^)
-    associations.removed = with builtins;
-      let
-        name = "kitty-open.desktop";
-        rawFile = readFile (config.programs.kitty.package.out + "/share/applications/" + name);
-        rawMimeTypes = head (elemAt (split "MimeType=(.*)\n" rawFile) 1);
-        filteredMineTypes = filter (v: v != "" && v != "inode/directory") (lib.splitString ";" rawMimeTypes);
-      in
-      listOfKeysToAttrs filteredMineTypes name;
+    ## manually remove unwanted mimetypes (everything except `inode/directory`).
+    ## see `cat $(nix-build "<nixpkgs>" -A kitty)/share/applications/kitty-open.desktop`
+    associations.removed = listOfKeysToAttrs [
+      "application/x-sh"
+      "application/x-shellscript"
+      "image/*"
+      "text/*"
+      "x-scheme-handler/kitty"
+      "x-scheme-handler/ssh"
+    ] "kitty-open.desktop";
   };
 
   xdg.userDirs = {
