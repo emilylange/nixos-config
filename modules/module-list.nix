@@ -1,5 +1,4 @@
 [
-  ./backups
   ./is-server
   ./networking
   ./redacted

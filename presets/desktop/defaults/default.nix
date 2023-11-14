@@ -42,6 +42,4 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   nixpkgs.config.allowUnfree = true;
-
-  backups.home.hostType = "desktop";
 }

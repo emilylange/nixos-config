@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./backups.nix
     ./sshd.nix
     "${modulesPath}/profiles/minimal.nix"
   ];
