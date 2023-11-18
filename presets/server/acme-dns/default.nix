@@ -20,11 +20,13 @@
         records = [
           "${domain}. NS acme-dns-ns.geklaute.cloud."
         ];
+        ## systemd-resolved already binds on ipv4
+        protocol = "both6";
       };
     };
   };
 
-  networking.firewall.interfaces.eth0 = {
+  networking.firewall = {
     allowedTCPPorts = [ 53 ];
     allowedUDPPorts = [ 53 ];
   };
