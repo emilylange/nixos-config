@@ -45,6 +45,7 @@
 
 {
   imports = [
+    ../presets/server/acme-dns
     ../presets/server/caddy
     ../presets/server/drone
     ../presets/server/drone/server

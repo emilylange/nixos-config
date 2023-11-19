@@ -6,7 +6,6 @@ in
 {
   imports = [
     ../presets/common/docker
-    ../presets/server/acme-dns
     ../presets/server/coturn
     "${modulesPath}/profiles/qemu-guest.nix"
   ];
