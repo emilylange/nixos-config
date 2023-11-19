@@ -75,6 +75,7 @@
 
   networking.useDHCP = false;
   networking.usePredictableInterfaceNames = true;
+  boot.kernel.sysctl."net.ipv6.ip_nonlocal_bind" = true; # needed for AnyIP, see below
   systemd.network = {
     enable = true;
     networks = {
