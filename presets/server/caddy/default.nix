@@ -1,5 +1,12 @@
 { config, pkgs, lib, ... }:
 
+let
+  acmedns-snippet = domain: ''
+    tls {
+      dns acmedns ${config.deployment.keys."caddy_acmedns_${domain}.json".path}
+    }
+  '';
+in
 {
   services.caddy = {
     enable = true;
@@ -14,10 +21,6 @@
         header Strict-Transport-Security "max-age=31536000; includeSubDomains"
         header X-Powered-By "trans rights are human rights"
 
-        tls {
-          dns cloudflare {env.CF_API_TOKEN}
-        }
-
         handle_path /.well-known/security.txt {
           respond `${lib.readFile ./security.txt}`
         }
@@ -25,6 +28,7 @@
 
       geklautecloud.de *.geklautecloud.de {
         import defaults
+        ${acmedns-snippet "geklautecloud.de"}
 
         @matrix.geklautecloud.de host matrix.geklautecloud.de
         handle @matrix.geklautecloud.de {
@@ -43,6 +47,7 @@
 
       geklaute.cloud *.geklaute.cloud {
         import defaults
+        ${acmedns-snippet "geklaute.cloud"}
 
         @geklaute.cloud host geklaute.cloud
         handle @geklaute.cloud {
@@ -94,6 +99,12 @@
           reverse_proxy 127.0.0.3:3001
         }
 
+        @acme-dns-api.geklaute.cloud host acme-dns-api.geklaute.cloud
+        handle @acme-dns-api.geklaute.cloud {
+          respond / "Refer to https://github.com/joohoi/acme-dns for details."
+          reverse_proxy ${with config.services.acme-dns.settings.api; "${ip}:${port}"}
+        }
+
         @ip.geklaute.cloud host ip.geklaute.cloud
         handle @ip.geklaute.cloud {
           respond {http.request.remote.host}
@@ -117,6 +128,7 @@
 
       gkcl.de *.gkcl.de {
         import defaults
+        ${acmedns-snippet "gkcl.de"}
 
         @gkcl.de host gkcl.de
         handle @gkcl.de {
@@ -135,6 +147,7 @@
 
       indeednotjames.com {
         import defaults
+        ${acmedns-snippet "indeednotjames.com"}
 
         handle_path /.well-known/matrix/* {
           header Content-Type application/json
@@ -159,6 +172,7 @@
 
       *.indeednotjames.com {
         import defaults
+        ${acmedns-snippet "indeednotjames.com"}
 
         @git host git.indeednotjames.com
         handle @git {
@@ -182,6 +196,7 @@
 
       emilylange.de *.emilylange.de {
         import defaults
+        ${acmedns-snippet "emilylange.de"}
 
         redir https://github.com/emilylange
       }
@@ -199,14 +214,18 @@
     ];
   };
 
-  systemd.services.caddy.serviceConfig.EnvironmentFile = config.deployment.keys."caddy_additional_env".path;
+  deployment.keys = builtins.listToAttrs (map
+    (e: lib.nameValuePair "caddy_acmedns_${e}.json" {
+      user = config.services.caddy.user;
+      destDir = "/";
+      ## curl -X POST https://acme-dns-api.geklaute.cloud/register | jq '.+ { server_url: "https://acme-dns-api.geklaute.cloud" }'
+      keyCommand = [ "bw" "--nointeraction" "get" "notes" "gkcl/caddy_acmedns_${e}.json" ];
+    }) [
+    "emilylange.de"
+    "geklaute.cloud"
+    "geklautecloud.de"
+    "gkcl.de"
+    "indeednotjames.com"
+  ]);
 
-  deployment.keys."caddy_additional_env" = {
-    user = config.services.caddy.user;
-    destDir = "/";
-    ## ```env
-    ## CF_API_TOKEN=
-    ## ```
-    keyCommand = [ "bw" "--nointeraction" "get" "password" "gkcl/caddy_additional_env" ];
-  };
 }
