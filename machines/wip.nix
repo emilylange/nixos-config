@@ -50,13 +50,14 @@
     ../presets/server/drone
     ../presets/server/drone/server
     ../presets/server/forgejo
+    ../presets/server/hedgedoc
+    ../presets/server/matrix-synapse/sliding-sync-proxy.nix
+    ../presets/server/matrix-synapse/synapse-container.nix
+    ../presets/server/matrix-synapse/synapse-legacy.nix
     ../presets/server/miniflux
     ../presets/server/nextcloud
     ../presets/server/ntfy-sh
     ../presets/server/uptime-kuma
-    ../presets/server/matrix-synapse/sliding-sync-proxy.nix
-    ../presets/server/matrix-synapse/synapse-container.nix
-    ../presets/server/matrix-synapse/synapse-legacy.nix
     ../presets/server/vaultwarden
   ];
 

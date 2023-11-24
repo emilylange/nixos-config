@@ -84,6 +84,11 @@ in
           reverse_proxy unix/${config.services.miniflux.config.LISTEN_ADDR}
         }
 
+        @hedgedoc.geklaute.cloud host hedgedoc.geklaute.cloud
+        handle @hedgedoc.geklaute.cloud {
+          reverse_proxy unix/${config.services.hedgedoc.settings.path}
+        }
+
         @git.geklaute.cloud host git.geklaute.cloud
         handle @git.geklaute.cloud {
           reverse_proxy unix/${config.services.forgejo.settings.server.HTTP_ADDR}
