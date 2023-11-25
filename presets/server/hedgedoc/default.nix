@@ -20,8 +20,10 @@
 
       email = false;
       allowAnonymous = false;
+      allowAnonymousEdits = true;
       allowEmailRegister = false;
       allowGravatar = false;
+      defaultPermission = "private";
 
       oauth2 = {
         providerName = "git.geklaute.cloud";
