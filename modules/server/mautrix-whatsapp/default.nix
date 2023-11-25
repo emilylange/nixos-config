@@ -67,7 +67,7 @@ in
       ensureDatabases = [ db ];
       ensureUsers = [{
         name = config.systemd.services.mautrix-whatsapp.serviceConfig.User;
-        ensurePermissions."DATABASE ${db}" = "ALL PRIVILEGES";
+        ensureDBOwnership = true;
       }];
     };
   };

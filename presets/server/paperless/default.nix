@@ -26,12 +26,10 @@ in
 
   services.postgresql = {
     enable = true;
-    ensureDatabases = [
-      db
-    ];
+    ensureDatabases = [ db ];
     ensureUsers = [{
       name = config.services.paperless.user;
-      ensurePermissions."DATABASE ${db}" = "ALL PRIVILEGES";
+      ensureDBOwnership = true;
     }];
   };
 }
