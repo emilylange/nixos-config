@@ -106,6 +106,7 @@ in
     {
       extraCommands = ''
         iptables -t nat -A PREROUTING -i ${internal-interface} -j MARK --set-mark 1
+        iptables -t nat -A PREROUTING -d ${external-ipv4}/32 -p tcp --dport 22 -j DNAT --to-destination ${target-ipv4}
         iptables -t nat -A PREROUTING -d ${external-ipv4}/32 -p tcp --dport 80 -j DNAT --to-destination ${target-ipv4}
         iptables -t nat -A PREROUTING -d ${external-ipv4}/32 -p tcp --dport 443 -j DNAT --to-destination ${target-ipv4}
         iptables -t nat -A PREROUTING -d ${external-ipv4}/32 -p udp --dport 443 -j DNAT --to-destination ${target-ipv4}
@@ -117,6 +118,7 @@ in
 
       extraStopCommands = ''
         iptables -t nat -D PREROUTING -i ${internal-interface} -j MARK --set-mark 1
+        iptables -t nat -D PREROUTING -d ${external-ipv4}/32 -p tcp --dport 22 -j DNAT --to-destination ${target-ipv4}
         iptables -t nat -D PREROUTING -d ${external-ipv4}/32 -p tcp --dport 80 -j DNAT --to-destination ${target-ipv4}
         iptables -t nat -D PREROUTING -d ${external-ipv4}/32 -p tcp --dport 443 -j DNAT --to-destination ${target-ipv4}
         iptables -t nat -D PREROUTING -d ${external-ipv4}/32 -p udp --dport 443 -j DNAT --to-destination ${target-ipv4}
