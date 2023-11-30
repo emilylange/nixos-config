@@ -47,6 +47,14 @@
         }
       ];
     };
+    customComponents = [
+      (pkgs.fetchFromGitHub {
+        owner = "zachowj";
+        repo = "hass-node-red";
+        rev = "v3.1.1";
+        hash = "sha256-/DKjx4lXtr4QZq3wZwFwy8Q+094Cq5H6RsvEaswcCD8=";
+      })
+    ];
   };
 
   services.postgresql = {
@@ -57,20 +65,6 @@
       ensureDBOwnership = true;
     }];
   };
-
-  systemd.tmpfiles.rules =
-    let
-      node-red = pkgs.fetchFromGitHub
-        {
-          owner = "zachowj";
-          repo = "hass-node-red";
-          rev = "v1.2.0";
-          hash = "sha256-EaPkyHqbKQJbsFkI2FNTTq3E9q3JJN1KhhLlTDr2mpw=";
-        } + "/custom_components/nodered";
-    in
-    [
-      "L+ '${config.services.home-assistant.configDir}/custom_components/nodered' - - - - ${node-red}"
-    ];
 
   deployment.keys."secrets.yaml" = {
     destDir = config.services.home-assistant.configDir;
