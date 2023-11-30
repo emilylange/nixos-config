@@ -22,7 +22,6 @@
 
 {
   imports = [
-    ../presets/common/docker
     ../presets/server/drone
     ../presets/server/drone/runner/exec
     ../presets/server/home-assistant
@@ -125,8 +124,6 @@
     ## TODO: eval `services.tlp`
     powertop.enable = true;
   };
-
-  systemd.services.docker.after = [ "wireguard-hass.service" ];
 
   networking.firewall = {
     allowedTCPPorts = [
