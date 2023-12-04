@@ -212,7 +212,7 @@ in
         blocks = [
           {
             block = "net";
-            format = "   $speed_down.eng(prefix_space:true, width:1) ~ $speed_up.eng(prefix_space:true, width:1)   ";
+            format = "   down $speed_down.eng(prefix_space:true, width:1) ~ up $speed_up.eng(prefix_space:true, width:1)   ";
           }
           {
             block = "music";
@@ -243,24 +243,24 @@ in
           }
           {
             block = "cpu";
-            format = "   $utilization.eng(prefix_space:true, width:1)   ";
+            format = "  cpu $utilization.eng(prefix_space:true, width:1)   ";
             interval = 3;
           }
           {
             block = "memory";
-            format = "   $mem_used.eng(prefix_space:true, width:1)   ";
+            format = "   mem $mem_used.eng(prefix_space:true, width:1)   ";
             interval = 3;
           }
           {
             block = "disk_space";
-            format = "   $free.eng(prefix_space:true, width:1)   ";
+            format = "   disk $free.eng(prefix_space:true, width:1)   ";
             interval = 60;
             path = "/";
           }
           {
             block = "battery";
             driver = "upower";
-            format = "   $percentage.eng(prefix_space:true, width:1)   ";
+            format = "   bat $percentage.eng(prefix_space:true, width:1)   ";
             charging_format = "   [+] $percentage.eng(prefix_space:true, width:1)   ";
             empty_format = "   [!] $percentage.eng(prefix_space:true, width:1)   ";
             missing_format = "";
@@ -268,7 +268,7 @@ in
           }
           {
             block = "time";
-            format = "   $timestamp.datetime(f:'%a, %H:%M:%S')   ";
+            format = "   $timestamp.datetime(f:'%H:%M:%S')   ";
             interval = 1;
           }
         ];
