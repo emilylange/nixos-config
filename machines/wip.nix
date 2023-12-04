@@ -164,6 +164,9 @@
     "/boot" = {
       label = "EFIBOOT1";
       fsType = "vfat";
+      options = [
+        "umask=0077"
+      ];
     };
 
     "/ext4" = {

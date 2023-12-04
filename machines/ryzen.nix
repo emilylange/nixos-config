@@ -44,6 +44,9 @@
     "/boot" = {
       device = "/dev/disk/by-label/EFIBOOT";
       fsType = "vfat";
+      options = [
+        "umask=0077"
+      ];
     };
   };
 
