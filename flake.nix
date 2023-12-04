@@ -42,6 +42,7 @@
         futro = { ... }: { };
         netcup01 = { ... }: { };
         wip = { ... }: { };
+        smol = { ... }: { };
       };
 
       nixosConfigurations = {

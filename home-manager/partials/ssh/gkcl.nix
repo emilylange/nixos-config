@@ -25,4 +25,8 @@ builtins.mapAttrs
       hostname = "2a01:4f8:190:441a::ffff";
       port = 22222;
     };
+
+    smol = {
+      hostname = "2a03:4000:40:94::1";
+    };
   } // { }
