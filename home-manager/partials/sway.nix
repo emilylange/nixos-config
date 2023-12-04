@@ -267,6 +267,12 @@ in
             device = "BAT1";
           }
           {
+            block = "sound";
+            driver = "pulseaudio";
+            device_kind = "sink";
+            format = "   vol {$volume.eng(prefix_space:true, width:1)|muted}   ";
+          }
+          {
             block = "time";
             format = "   $timestamp.datetime(f:'%H:%M:%S')   ";
             interval = 1;
