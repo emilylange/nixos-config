@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./partials/captive-portal-browser.nix
     ./partials/element-desktop.nix
     ./partials/firefox.nix
     ./partials/fish.nix
