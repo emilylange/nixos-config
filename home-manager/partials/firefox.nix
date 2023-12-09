@@ -14,7 +14,8 @@
           "signon.firefoxRelay.feature" = "disabled";
 
           ## DNS over HTTPS (DoH)
-          "network.trr.mode" = 2;
+          ## https://wiki.mozilla.org/Trusted_Recursive_Resolver
+          "network.trr.mode" = 3;
           "network.trr.uri" = "https://open.dns0.eu";
         } // lib.optionalAttrs (osConfig.networking.hostName == "ryzen") {
           ## enable high refresh rate for desktop
