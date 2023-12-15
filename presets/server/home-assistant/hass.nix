@@ -72,4 +72,10 @@
     user = config.systemd.services.home-assistant.serviceConfig.User;
   };
   systemd.services.home-assistant.unitConfig.ConditionPathExists = [ config.deployment.keys."secrets.yaml".path ];
+
+  # See https://discourse.nixos.org/t/breaking-changes-announcement-for-unstable/17574/42
+  # tl;dr: home-assistant's matter integration is only available as blob and uses openssl v1.1
+  nixpkgs.config.permittedInsecurePackages = [
+    "openssl-1.1.1w"
+  ];
 }
