@@ -13,7 +13,21 @@
       "radio_browser" ## needed for onboarding
     ];
     config = {
-      default_config = { };
+      # As there isn't an official way to blocklist certain integrations that get enabled
+      # when using `default_config = { };`, we have to maintain an allowlist instead.
+      # https://www.home-assistant.io/integrations/default_config/
+      config = { };
+      frontend = { };
+      history = { };
+      logbook = { };
+      logger = { };
+      map = { };
+      mobile_app = { };
+      my = { };
+      person = { };
+      sun = { };
+      system_health = { };
+
       homeassistant = {
         unit_system = "metric";
         country = "!secret country";
