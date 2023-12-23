@@ -1,15 +1,20 @@
-{ modulesPath, ... }:
+{ modulesPath, inputs, ... }:
 
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+    inputs.lanzaboote.nixosModules.lanzaboote
   ];
 
   boot = {
     kernelModules = [ "kvm-amd" ];
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot.enable = false; ## lanzaboote requires this to be disabled (for now)
       efi.canTouchEfiVariables = true;
+    };
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
     };
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" ];
