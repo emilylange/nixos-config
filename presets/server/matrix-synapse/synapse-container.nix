@@ -127,4 +127,10 @@ in
     ];
     user = config.containers."mx-synapse-indeednotjames".config.systemd.services.matrix-synapse.serviceConfig.User;
   };
+
+  # We depend on `/run/postgresql` (RuntimeDirectory) as part of a bindMount in the container.
+  # We do not want that directory gone (or rather recreated) if `postgresql.service` restarts
+  # (which might happens for various reasons), as this would change `/run/postgresql` inode,
+  # which isn't populated to the bindMount, which in turn results in a broken (empty) bind state.
+  systemd.services.postgresql.serviceConfig.RuntimeDirectoryPreserve = true;
 }
