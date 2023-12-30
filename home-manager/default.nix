@@ -14,7 +14,7 @@
     ./partials/rofi.nix
     ./partials/ssh.nix
     ./partials/sway.nix
-    ./partials/vscode.nix
+    ./partials/vscodium.nix
     ./partials/xdg.nix
     ./vars.nix ## `config.colors`
   ];
