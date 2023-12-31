@@ -123,19 +123,29 @@ in
         let
           modifier = config.wayland.windowManager.sway.config.modifier;
           windows = "Mod4"; ## (Windows/Super)
+
+          pamixer = lib.getExe pkgs.pamixer;
+          playerctl = lib.getExe pkgs.playerctl;
         in
         lib.mkOptionDefault {
           "${modifier}+p" = "exec kitty --title 'gotop terminal' gotop --color vice";
           "${windows}+e" = "exec thunar";
-          "${windows}+z" = "exec ${lib.getExe pkgs.playerctl} play-pause";
 
           "${modifier}+Shift+f" = "exec rofi -show window";
 
           "${windows}+Shift+l" = "move container to output left";
           "${windows}+Shift+k" = "move workspace to output left";
 
-          "XF86MonBrightnessDown" = "exec light -U 5";
-          "XF86MonBrightnessUp" = "exec light -A 5";
+          XF86AudioPlay = "exec ${playerctl} play-pause";
+          XF86AudioPrev = "exec ${playerctl} previous";
+          XF86AudioNext = "exec ${playerctl} next";
+
+          XF86AudioMute = "exec ${pamixer} --toggle-mute";
+          XF86AudioLowerVolume = "exec ${pamixer} --decrease 5";
+          XF86AudioRaiseVolume = "exec ${pamixer} --increase 5";
+
+          XF86MonBrightnessDown = "exec light -U 5";
+          XF86MonBrightnessUp = "exec light -A 5";
 
           "${windows}+l" = "exec ${waylock}";
 
