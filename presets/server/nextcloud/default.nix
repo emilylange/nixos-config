@@ -36,7 +36,7 @@
       };
     };
 
-    globalProfiles = false;
+    extraOptions."profile.enabled" = false;
     enableImagemagick = false;
   };
 
