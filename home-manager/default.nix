@@ -10,6 +10,7 @@
     ./partials/gnupg.nix
     ./partials/gtk-settings.nix
     ./partials/kitty.nix
+    ./partials/nixpkgs-config.nix
     ./partials/packages.nix
     ./partials/rofi.nix
     ./partials/ssh.nix
