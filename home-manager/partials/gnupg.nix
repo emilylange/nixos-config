@@ -7,5 +7,6 @@
     enable = true;
     grabKeyboardAndMouse = false;
     defaultCacheTtl = 600; ## seconds
+    pinentryFlavor = "gnome3";
   };
 }
