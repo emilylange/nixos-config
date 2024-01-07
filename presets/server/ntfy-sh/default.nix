@@ -10,14 +10,16 @@
       behind-proxy = true;
       listen-http = "";
       listen-unix = "/run/ntfy-sh/ntfy.sock";
-      listen-unix-mode = 511; ## lossy nix->yaml conversion eats octal literals (equal to 0777)
+      listen-unix-mode = 146; ## lossy nix->yaml conversion eats octal literals (equal to 0222)
 
       auth-file = "/var/lib/ntfy-sh/user.db";
       auth-default-access = "deny-all";
       cache-file = "/var/lib/ntfy-sh/cache.db";
       cache-duration = "72h";
 
+      enable-login = true;
       enable-signup = false;
+      enable-reservations = true;
       visitor-email-limit-burst = 0;
     };
   };
