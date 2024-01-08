@@ -22,8 +22,6 @@
       dbuser = "nextcloud";
       dbhost = "/run/postgresql";
 
-      defaultPhoneRegion = "DE";
-
       adminuser = "admin";
       adminpassFile = config.deployment.keys."nextcloud-adminpass".path;
 
@@ -36,7 +34,12 @@
       };
     };
 
-    extraOptions."profile.enabled" = false;
+
+    extraOptions = {
+      default_phone_region = "DE";
+      "profile.enabled" = false;
+    };
+
     enableImagemagick = false;
   };
 

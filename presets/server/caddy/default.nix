@@ -191,7 +191,7 @@ in
 
         @mx-sliding-sync host mx-sliding-sync.indeednotjames.com
         handle @mx-sliding-sync {
-          reverse_proxy ${config.services.matrix-synapse.sliding-sync.settings.SYNCV3_BINDADDR}
+          reverse_proxy ${config.services.matrix-sliding-sync.settings.SYNCV3_BINDADDR}
         }
 
         handle {

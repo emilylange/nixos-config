@@ -9,7 +9,7 @@ in
   services.paperless = {
     enable = true;
     dataDir = "/paperless";
-    extraConfig = {
+    settings = {
       PAPERLESS_OCR_LANGUAGE = "deu+eng";
       PAPERLESS_DBHOST = "/run/postgresql";
       PAPERLESS_DBENGINE = "postgresql";

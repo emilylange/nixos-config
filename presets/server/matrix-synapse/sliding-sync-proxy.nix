@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  services.matrix-synapse.sliding-sync = {
+  services.matrix-sliding-sync = {
     enable = true;
     environmentFile = "/matrix-sliding-sync.env";
     settings = {
