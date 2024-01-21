@@ -45,7 +45,6 @@ in
     systemd.services.terraform-backend = {
       description = "terraform-backend";
       wantedBy = [ "multi-user.target" ];
-      after = [ "network-online.target" ];
       environment = cfg.extraEnvironment;
       serviceConfig = {
         ExecStart = getExe cfg.package;
