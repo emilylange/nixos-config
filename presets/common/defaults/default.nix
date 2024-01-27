@@ -8,9 +8,8 @@
   config = {
     networking.nameservers =
       if config.services.resolved.enable then [
-        "2a0f:fc80::ffff#open.dns0.eu"
-        "2a0f:fc81::ffff#open.dns0.eu"
-        "193.110.81.254#open.dns0.eu"
+        "2a07:e340::2#dns.mullvad.net"
+        "194.242.2.2#dns.mullvad.net"
       ] else [
         "2a0f:fc80::ffff" # open.dns0.eu
         "2a0f:fc81::ffff" # open.dns0.eu
