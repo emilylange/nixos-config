@@ -50,6 +50,7 @@
     ../presets/server/drone
     ../presets/server/drone/server
     ../presets/server/forgejo
+    ../presets/server/garage
     ../presets/server/hedgedoc
     ../presets/server/matrix-synapse/sliding-sync-proxy.nix
     ../presets/server/matrix-synapse/synapse-container.nix
