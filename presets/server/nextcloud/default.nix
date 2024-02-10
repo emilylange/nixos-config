@@ -28,12 +28,16 @@
       objectstore.s3 = {
         enable = true;
         autocreate = true;
-        inherit (redacted.kv.global.nextcloud.objectstore.s3)
-          bucket hostname key region;
-        secretFile = config.deployment.keys."nextcloud-s3-secretkey".path;
+        bucket = "nextcloud";
+        hostname = "127.3.3.3";
+        port = 3333;
+        region = "garage";
+        usePathStyle = true;
+        useSsl = false;
+        key = redacted.kv.global.nextcloud.objectstore.s3.key;
+        secretFile = "/nextcloud-s3-secretkey";
       };
     };
-
 
     extraOptions = {
       default_phone_region = "DE";
@@ -52,12 +56,6 @@
     user = "nextcloud";
     destDir = "/";
     keyCommand = [ "bw" "--nointeraction" "get" "password" "gkcl/nextcloud-adminpass" ];
-  };
-
-  deployment.keys."nextcloud-s3-secretkey" = {
-    user = "nextcloud";
-    destDir = "/";
-    keyCommand = [ "bw" "--nointeraction" "get" "password" "gkcl/nextcloud-s3-secretkey" ];
   };
 
   ## we will use caddy instead :)

@@ -308,11 +308,11 @@
     },
     "redacted": {
       "locked": {
-        "lastModified": 1698523044,
-        "narHash": "sha256-8yIIMkCPHTZ2lwyLWhW0kkanfJL5BVQ05/k94HDlMWI=",
+        "lastModified": 1707571622,
+        "narHash": "sha256-aIhyND1HcpRLuu10y9796q9zzRhB+xlyyYVhDKsmCEY=",
         "ref": "refs/heads/main",
-        "rev": "0650c208478975323f62b0f27217cc450e3fc179",
-        "revCount": 10,
+        "rev": "7fed872a85b4efd3f4c2c6d944014b29955e2dd4",
+        "revCount": 11,
         "type": "git",
         "url": "ssh://git@git.geklaute.cloud/emilylange/nixos-config-redacted"
       },
