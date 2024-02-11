@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, osConfig, ... }:
 
 {
   programs.vscode = {
@@ -57,6 +57,12 @@
         serverSettings = {
           nil.formatting.command = [ (lib.getExe pkgs.nixpkgs-fmt) ];
         };
+      };
+
+      ltex = {
+        language = "en-US"; # "auto" (and by proxy "en" instead of "en-US" does not provide spelling checks)
+        additionalRules.motherTongue = "de-DE";
+        languageToolHttpServerUri = "http://localhost:${toString osConfig.services.languagetool.port}/";
       };
     };
 
