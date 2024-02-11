@@ -5,6 +5,7 @@
     ../../common/docker
     ./fonts.nix
     ./home-manager.nix
+    ./languagetool-server.nix
     ./packages.nix
     ./pipewire.nix
     ./scanner.nix
