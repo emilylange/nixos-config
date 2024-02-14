@@ -15,7 +15,9 @@
       };
     };
 
-    # official LanguageTool extension on Firefox
-    allowOrigin = "moz-extension://c827f42b-4fff-4d66-82de-17f356f24332";
+    # allow access from all origins.
+    # this used to be an allowlist for each moz-extension:// uuid.
+    # but turns out, those are unique per installation and not global.
+    allowOrigin = "*";
   };
 }
