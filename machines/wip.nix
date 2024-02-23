@@ -41,7 +41,7 @@
 # touch /mnt/etc/NIXOS
 # NIXOS_INSTALL_BOOTLOADER=1 nixos-enter -- /run/current-system/bin/switch-to-configuration boot
 
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 
 {
   imports = [
@@ -61,6 +61,8 @@
     ../presets/server/uptime-kuma
     ../presets/server/vaultwarden
   ];
+
+  nix.gc.automatic = lib.mkForce false;
 
   services.postgresql = {
     enable = true;
