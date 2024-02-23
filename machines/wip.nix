@@ -58,6 +58,7 @@
     ../presets/server/miniflux
     ../presets/server/nextcloud
     ../presets/server/ntfy-sh
+    ../presets/server/postgres-restic
     ../presets/server/uptime-kuma
     ../presets/server/vaultwarden
   ];
