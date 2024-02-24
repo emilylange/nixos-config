@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, redacted, ... }:
 
 let
   acmedns-snippet = domain: ''
@@ -125,6 +125,8 @@ in
         handle @ntfy.geklaute.cloud {
           reverse_proxy unix/${config.services.ntfy-sh.settings.listen-unix}
         }
+
+        ${redacted.caddyfile-sections."geklaute.cloud"}
 
         handle {
           redir https://geklaute.cloud{uri}
