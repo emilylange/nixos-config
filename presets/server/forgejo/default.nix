@@ -106,16 +106,9 @@ in
         User-agent: *
         Disallow: /
       '';
-      droneHost = config.systemd.services.drone-server.environment.DRONE_SERVER_HOST;
-      templates = pkgs.writeTextDir "custom/extra_tabs.tmpl" ''
-        <a class="item" href="https://${droneHost}{{$.RepoLink}}" target="_blank" rel="noopener noreferrer">
-          <img alt="DroneCI status badge" src="https://${droneHost}/api/badges{{$.RepoLink}}/status.svg">
-        </a>
-      '';
     in
     [
       "L+ '${cfg.stateDir}/custom/robots.txt' - - - - ${robots}"
-      "L+ '${cfg.stateDir}/custom/templates' - - - - ${templates}"
     ];
 
   systemd.services.forgejo = {

@@ -94,11 +94,6 @@ in
           reverse_proxy unix/${config.services.forgejo.settings.server.HTTP_ADDR}
         }
 
-        @drone.geklaute.cloud host drone.geklaute.cloud
-        handle @drone.geklaute.cloud {
-          reverse_proxy ${config.systemd.services.drone-server.environment.DRONE_SERVER_PORT}
-        }
-
         @up.geklaute.cloud host up.geklaute.cloud
         handle @up.geklaute.cloud {
           reverse_proxy 127.0.0.3:3001

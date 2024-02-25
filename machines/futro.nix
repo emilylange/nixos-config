@@ -22,8 +22,6 @@
 
 {
   imports = [
-    ../presets/server/drone
-    ../presets/server/drone/runner/exec
     ../presets/server/home-assistant
     ../presets/server/paperless
   ];
