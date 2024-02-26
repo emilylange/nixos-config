@@ -9,7 +9,7 @@
     bitwarden-cli
     caddy
     colmena
-    dogdns ## has no IPv6 support :<
+    doggo
     farge
     firefox
     gnome.gnome-calculator
