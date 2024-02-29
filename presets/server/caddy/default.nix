@@ -4,6 +4,7 @@ let
   acmedns-snippet = domain: ''
     tls {
       dns acmedns ${config.deployment.keys."caddy_acmedns_${domain}.json".path}
+      propagation_timeout -1
     }
   '';
 in
@@ -202,6 +203,28 @@ in
 
         redir https://github.com/emilylange
       }
+
+      emily.town *.emily.town {
+        import defaults
+        ${acmedns-snippet "emily.town"}
+
+        # punycode for "krümel"
+        @xn--krmel-lva host xn--krmel-lva.emily.town
+        handle @xn--krmel-lva {
+          respond `hope you don't mind the punycode subdomain.
+
+      still work-in-progess, feel free to come back some time in the future.
+
+      anyhowwwwww...
+      in case you happen to need the current time of this server:
+
+      {time.now.http}` 200
+        }
+
+        handle {
+          redir https://xn--krmel-lva.emily.town
+        }
+      }
     '' + /Caddyfile;
   };
 
@@ -223,6 +246,7 @@ in
       ## curl -X POST https://acme-dns-api.geklaute.cloud/register | jq '.+ { server_url: "https://acme-dns-api.geklaute.cloud" }'
       keyCommand = [ "bw" "--nointeraction" "get" "notes" "gkcl/caddy_acmedns_${e}.json" ];
     }) [
+    "emily.town"
     "emilylange.de"
     "geklaute.cloud"
     "geklautecloud.de"
