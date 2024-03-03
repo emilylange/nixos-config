@@ -19,8 +19,12 @@ in
 
       (defaults) {
         encode zstd gzip
+
         header Strict-Transport-Security "max-age=31536000; includeSubDomains"
         header X-Powered-By "trans rights are human rights"
+
+        @X-Clacks-Overhead header X-Clacks-Overhead *
+        header @X-Clacks-Overhead X-Clacks-Overhead {http.request.header.X-Clacks-Overhead}
 
         handle_path /.well-known/security.txt {
           respond `${lib.readFile ./security.txt}`
