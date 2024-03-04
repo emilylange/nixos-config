@@ -18,6 +18,7 @@
     kubectl
     kubernetes-helm
     kustomize
+    mumble
     networkmanagerapplet
     nix-output-monitor
     pavucontrol
