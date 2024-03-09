@@ -18,11 +18,18 @@ in
         mountPoint = "/run/postgresql";
         isReadOnly = true;
       };
+
+      "container-matrix-synapse-unix" = {
+        hostPath = "/run/matrix-synapse-indeednotjames";
+        mountPoint = "/run/matrix-synapse";
+        isReadOnly = false;
+      };
     };
 
     config = { config, ... }: {
       services.matrix-synapse = {
         enable = true;
+        enableRegistrationScript = false;
         log.root.level = "WARNING";
         settings = {
           server_name = "indeednotjames.com";
@@ -52,10 +59,9 @@ in
           };
 
           listeners = [{
-            port = 18008;
-            tls = false;
+            path = "/run/matrix-synapse/public.sock";
+            mode = "0222";
             type = "http";
-            x_forwarded = true;
             resources = [{
               compress = false;
               names = [
@@ -133,4 +139,10 @@ in
   # (which might happens for various reasons), as this would change `/run/postgresql` inode,
   # which isn't populated to the bindMount, which in turn results in a broken (empty) bind state.
   systemd.services.postgresql.serviceConfig.RuntimeDirectoryPreserve = true;
+
+  systemd.tmpfiles.settings."10-nixos-container-indeednotjames" = {
+    "/run/matrix-synapse-indeednotjames".d = {
+      mode = "0755";
+    };
+  };
 }

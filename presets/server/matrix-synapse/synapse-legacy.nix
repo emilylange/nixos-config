@@ -3,6 +3,7 @@
 {
   services.matrix-synapse = {
     enable = true;
+    enableRegistrationScript = false;
     log.root.level = "WARNING";
     settings = {
       server_name = "matrix.geklautecloud.de";
@@ -30,10 +31,9 @@
       };
 
       listeners = [{
-        port = 28008;
-        tls = false;
+        path = "/run/matrix-synapse/public.sock";
+        mode = "0222";
         type = "http";
-        x_forwarded = true;
         resources = [{
           compress = false;
           names = [

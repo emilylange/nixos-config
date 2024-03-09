@@ -42,7 +42,7 @@ in
             respond /server `{ "m.server": "matrix.geklautecloud.de:443" }`
             respond 404
           }
-          reverse_proxy [::1]:28008
+          reverse_proxy unix/${(lib.head config.services.matrix-synapse.settings.listeners).path}
         }
 
         handle {
@@ -188,7 +188,7 @@ in
 
         @mx-synapse host mx-synapse.indeednotjames.com
         handle @mx-synapse {
-          reverse_proxy [::1]:18008
+          reverse_proxy unix//run/matrix-synapse-indeednotjames/public.sock
         }
 
         @mx-sliding-sync host mx-sliding-sync.indeednotjames.com
