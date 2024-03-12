@@ -18,7 +18,7 @@
 ##  ssh-keygen -t ed25519 -N "" -f /mnt/etc/secrets/initrd/ssh_host_ed25519_key
 ##  ./colmena-bootstrap futro /mnt # https://gist.github.com/zhaofengli/e986fa7688d6c16872b86c6ae6215c9b
 
-{ config, nodes, self, ... }:
+{ config, nodes, self, pkgs, ... }:
 
 {
   imports = [
@@ -155,6 +155,28 @@
     destDir = "/";
     keyCommand = [ "bw" "--nointeraction" "get" "password" "gkcl/futro/wireguard/hass/privateKey" ];
   };
+
+  services.gitea-actions-runner = {
+    package = pkgs.forgejo-actions-runner;
+    instances."native" = {
+      enable = true;
+      name = "native";
+      url = "https://git.geklaute.cloud";
+      labels = [
+        "native:host"
+      ];
+      tokenFile = "/forgejo_runner_token_native";
+      hostPackages = with pkgs; [
+        bash
+        coreutils
+        gitMinimal
+        nix
+        nodejs
+      ];
+    };
+  };
+  # TODO: fix this upstream
+  systemd.services.gitea-runner-native.environment.HOME = "/var/lib/gitea-runner/native";
 
   system.stateVersion = "22.05";
 }
