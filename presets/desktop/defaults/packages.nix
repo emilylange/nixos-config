@@ -44,4 +44,7 @@
     wifi.macAddress = "random";
     wifi.scanRandMacAddress = true;
   };
+
+  ## speed up boot (systemd-analyze critical-chain)
+  systemd.services.NetworkManager-wait-online.enable = false;
 }
