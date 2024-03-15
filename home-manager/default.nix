@@ -9,6 +9,7 @@
     ./partials/git.nix
     ./partials/gnupg.nix
     ./partials/gtk-settings.nix
+    ./partials/helix.nix
     ./partials/kitty.nix
     ./partials/nixpkgs-config.nix
     ./partials/packages.nix
