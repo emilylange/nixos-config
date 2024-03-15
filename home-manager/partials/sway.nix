@@ -109,7 +109,7 @@ in
       };
 
 
-      modifier = "Mod1"; ## 'ALT'
+      modifier = "Mod4"; # "Windows"/Super key
       terminal = "kitty";
       menu = "rofi -show drun";
 
@@ -122,19 +122,15 @@ in
       keybindings =
         let
           modifier = config.wayland.windowManager.sway.config.modifier;
-          windows = "Mod4"; ## (Windows/Super)
-
           pamixer = lib.getExe pkgs.pamixer;
           playerctl = lib.getExe pkgs.playerctl;
         in
         lib.mkOptionDefault {
           "${modifier}+p" = "exec kitty --title 'gotop terminal' gotop --color vice";
-          "${windows}+e" = "exec thunar";
+          "${modifier}+e" = "exec thunar";
 
-          "${modifier}+Shift+f" = "exec rofi -show window";
-
-          "${windows}+Shift+l" = "move container to output left";
-          "${windows}+Shift+k" = "move workspace to output left";
+          "${modifier}+Shift+l" = "move container to output left";
+          "${modifier}+Shift+k" = "move workspace to output left";
 
           XF86AudioPlay = "exec ${playerctl} play-pause";
           XF86AudioPrev = "exec ${playerctl} previous";
@@ -147,7 +143,7 @@ in
           XF86MonBrightnessDown = "exec light -U 5";
           XF86MonBrightnessUp = "exec light -A 5";
 
-          "${windows}+l" = "exec ${waylock}";
+          "${modifier}+l" = "exec ${waylock}";
 
           ## until https://github.com/nix-community/home-manager/pull/4636 is merged
           "${modifier}+0" = "workspace number 10";
