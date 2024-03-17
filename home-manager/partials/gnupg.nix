@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs.gpg.enable = true;
@@ -7,6 +7,6 @@
     enable = true;
     grabKeyboardAndMouse = false;
     defaultCacheTtl = 600; ## seconds
-    pinentryFlavor = "gnome3";
+    pinentryPackage = pkgs.pinentry-gnome3;
   };
 }
