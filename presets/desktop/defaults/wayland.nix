@@ -10,6 +10,7 @@
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
     ];
+    config.common.default = "*";
   };
 
   ## auto-login for user "me" on tty1.
