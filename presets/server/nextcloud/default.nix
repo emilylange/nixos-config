@@ -39,7 +39,7 @@
       };
     };
 
-    extraOptions = {
+    settings = {
       default_phone_region = "DE";
       "profile.enabled" = false;
     };
