@@ -56,6 +56,7 @@
             ./machines/ryzen.nix
             ./presets/common/defaults
             ./presets/desktop/defaults
+            ({ ... }: { nixpkgs.overlays = import ./overlays; })
           ] ++ (import ./modules/module-list.nix);
         };
 
@@ -69,6 +70,7 @@
             ./machines/frameless.nix
             ./presets/common/defaults
             ./presets/desktop/defaults
+            ({ ... }: { nixpkgs.overlays = import ./overlays; })
           ] ++ (import ./modules/module-list.nix);
         };
       } // colmenaHive.nodes;
