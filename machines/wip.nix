@@ -137,7 +137,18 @@
     };
   };
 
-  boot.swraid.enable = true;
+  boot.swraid = {
+    enable = true;
+    mdadmConf = "PROGRAM ${pkgs.writeShellScript "curl-post-all-params.sh" ''
+      for arg in "$@"; do
+        args+=("--data" "$arg")
+      done
+
+      URL=$(</mdadm-monitoring-post-url.txt)
+      ${lib.getExe pkgs.curl} -X POST "$URL" "''${args[@]}"
+    ''}
+    ";
+  };
   boot.initrd.luks.devices."raid" = {
     device = "/dev/md0";
     allowDiscards = true;
