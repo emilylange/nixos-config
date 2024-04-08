@@ -3,15 +3,17 @@
 {
   services.home-assistant = {
     enable = true;
-    extraPackages = python3Packages: with python3Packages; [ psycopg2 ];
-    extraComponents = [
-      "met"
-      "lovelace"
-      "mqtt"
-      "backup"
-      "esphome"
-      "radio_browser" ## needed for onboarding
-    ];
+    package = (pkgs.home-assistant.override {
+      extraPackages = python3Packages: with python3Packages; [ psycopg2 ];
+      extraComponents = [
+        "met"
+        "lovelace"
+        "mqtt"
+        "backup"
+        "esphome"
+        "radio_browser" ## needed for onboarding
+      ];
+    }).overrideAttrs (_: { doInstallCheck = false; });
     config = {
       # As there isn't an official way to blocklist certain integrations that get enabled
       # when using `default_config = { };`, we have to maintain an allowlist instead.
