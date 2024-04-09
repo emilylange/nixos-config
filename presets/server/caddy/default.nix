@@ -115,6 +115,11 @@ in
           respond {http.request.remote.host}
         }
 
+        @localip.geklaute.cloud host localip.geklaute.cloud
+        handle @localip.geklaute.cloud {
+          respond {http.request.local.host}
+        }
+
         @vaultwarden.geklaute.cloud host vaultwarden.geklaute.cloud
         handle @vaultwarden.geklaute.cloud {
           redir /admin* /

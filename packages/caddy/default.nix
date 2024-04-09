@@ -1,12 +1,21 @@
-{ pkgs, ... }:
+{ lib
+, caddy
+, xcaddy
+, buildGoModule
+, stdenv
+, cacert
+, go
+}:
 
-with pkgs;
-
+let
+  version = "2.7.6-unstable-2024-04-08";
+  rev = "f4840cfeb85ac33d29a1ab88d474750041a98733";
+in
 caddy.override {
   buildGoModule = args: buildGoModule (args // {
     src = stdenv.mkDerivation rec {
       pname = "caddy-using-xcaddy-${xcaddy.version}";
-      inherit (caddy) version;
+      inherit version;
 
       dontUnpack = true;
       dontFixup = true;
@@ -28,7 +37,7 @@ caddy.override {
       '';
 
       buildPhase = ''
-        ${xcaddy}/bin/xcaddy build "${caddy.src.rev}" ${lib.concatMapStringsSep " " (plugin: "--with ${plugin}") plugins}
+        ${xcaddy}/bin/xcaddy build "${rev}" ${lib.concatMapStringsSep " " (plugin: "--with ${plugin}") plugins}
         cd buildenv*
         go mod vendor
       '';
@@ -37,7 +46,7 @@ caddy.override {
         cp -r --reflink=auto . $out
       '';
 
-      outputHash = "sha256-QsGrtpBJ9b2Nn3i5mUHYA60481ceTJDeCRl0qL6OWlE=";
+      outputHash = "sha256-MgvqnG/E1q6xbQjXGxdUyyaHpnDscih282GR9XD42t0=";
       outputHashMode = "recursive";
     };
 
