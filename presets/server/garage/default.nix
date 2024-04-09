@@ -21,6 +21,10 @@
 
     extraEnvironment = {
       GARAGE_RPC_SECRET_FILE = "%d/rpc-secret";
+      # Workaround for "Error: File /run/credentials/garage.service/rpc-secret is world-readable! (mode: 0100440, expected 0600)"
+      # systemd upstream issue: https://github.com/systemd/systemd/issues/29435
+      # garage: https://git.deuxfleurs.fr/Deuxfleurs/garage/issues/658
+      GARAGE_ALLOW_WORLD_READABLE_SECRETS = "true";
     };
   };
 
