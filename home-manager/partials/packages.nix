@@ -5,7 +5,6 @@
     android-tools
     ansible
     ansible-lint
-    bitwarden
     bitwarden-cli
     caddy
     colmena
