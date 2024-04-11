@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, redacted, ... }:
 
 let
   waylock = "${lib.getExe pkgs.waylock} -fork-on-lock -init-color 0x6c71c4";
@@ -165,14 +165,7 @@ in
           pos = "0 0";
         };
 
-        "*".bg = toString [
-          (builtins.fetchurl {
-            ## https://www.reddit.com/r/unixporn/comments/uqbky7/aqua_monochrome/
-            sha256 = "1pgcklrnax5nb59faclpd59ya3xj4nfry8ci17kkrsahnbmknag8";
-            url = "https://github.com/Haruno19/dotfiles/raw/0ec5fb68067d52bd5ec9b4f6139524104015af42/Wallpapers/h9xl47mbld851.png";
-          })
-          "fill"
-        ];
+        "*".bg = "${redacted.hm.wallpaper} fill";
       };
 
       input."type:touchpad" = {
