@@ -180,6 +180,13 @@ in
         xkb_variant = "nodeadkeys";
       };
     };
+
+    # prevent swayidle from doing its thing while having a
+    # fullscreen window in focus (e.g. watching some video)
+    extraConfig = ''
+      for_window [class=".*"] inhibit_idle fullscreen
+      for_window [app_id=".*"] inhibit_idle fullscreen
+    '';
   };
 
   programs.i3status-rust = {
