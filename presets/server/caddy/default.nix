@@ -80,8 +80,8 @@ in
             header_down Strict-Transport-Security "max-age=15552000;"
           }
 
-          rewrite /.well-known/carddav /remote.php/dav
-          rewrite /.well-known/caldav /remote.php/dav
+          redir /.well-known/carddav /remote.php/dav
+          redir /.well-known/caldav /remote.php/dav
         }
 
         @rss.geklaute.cloud host rss.geklaute.cloud

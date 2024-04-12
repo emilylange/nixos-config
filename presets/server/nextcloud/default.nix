@@ -17,6 +17,13 @@
       apcu = false;
     };
 
+    phpOptions = {
+      "opcache.interned_strings_buffer" = 64;
+      "opcache.jit" = 1255;
+      "opcache.jit_buffer_size" = "128M";
+      "opcache.revalidate_freq" = 60;
+    };
+
     config = {
       dbtype = "pgsql";
       dbuser = "nextcloud";
@@ -42,9 +49,12 @@
     settings = {
       default_phone_region = "DE";
       "profile.enabled" = false;
+      trusted_proxies = [ "" ];
+      log_type = "file";
+      maintenance_window_start = 1;
     };
 
-    enableImagemagick = false;
+    enableImagemagick = true;
   };
 
   services.redis.servers.nextcloud = {
