@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -38,6 +38,10 @@
   networking.networkmanager = {
     enable = true;
     dns = "none"; ## do not overwrite /etc/resolv.conf
+
+    ## remove default plugins
+    ## See https://github.com/NixOS/nixpkgs/pull/164531
+    plugins = lib.mkForce [ ];
 
     ## randomize mac addresses on each connect (and scan) by default
     ethernet.macAddress = "random";

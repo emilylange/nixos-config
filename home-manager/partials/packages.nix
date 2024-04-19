@@ -26,7 +26,6 @@
     tdesktop
     thunderbird
     trash-cli
-    ungoogled-chromium
     vlc
     xarchiver
     xcaddy

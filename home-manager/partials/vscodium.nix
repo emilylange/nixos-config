@@ -77,7 +77,6 @@
       rust-lang.rust-analyzer
       seatonjiang.gitmoji-vscode
       tamasfe.even-better-toml
-      valentjn.vscode-ltex
       zhuangtongfa.material-theme
     ];
   };
