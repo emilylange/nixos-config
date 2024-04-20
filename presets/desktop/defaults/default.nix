@@ -36,6 +36,8 @@
 
   services.gnome.gnome-keyring.enable = true;
 
+  services.earlyoom.enable = true;
+
   ## enable Ozone (enables wayland for chromium/electron)
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
