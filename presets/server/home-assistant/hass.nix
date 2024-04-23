@@ -71,6 +71,21 @@
         hash = "sha256-ZeLxHnX7FPpHQ+CV1EiGQc9+jxY/+wYMk/d/6QdXji4=";
       })
     ];
+    customLovelaceModules = [
+      (
+        (pkgs.fetchFromGitHub {
+          owner = "Hypfer";
+          repo = "lovelace-valetudo-map-card";
+          rev = "v2023.04.0";
+          hash = "sha256-oRU+QPswvj2oL9+BHyAEQhlsd4pMMdrkHuL/ihUbIro=";
+          postFetch = ''
+            mv $out src
+            mkdir $out
+            install -m0644 src/dist/valetudo-map-card.js $out
+          '';
+        }).overrideAttrs (_: { version = "2023.04.0"; passthru.entrypoint = "valetudo-map-card.js"; })
+      )
+    ];
   };
 
   services.postgresql = {
