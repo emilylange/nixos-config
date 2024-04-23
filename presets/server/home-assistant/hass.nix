@@ -67,8 +67,8 @@
       (pkgs.fetchFromGitHub {
         owner = "zachowj";
         repo = "hass-node-red";
-        rev = "v3.1.1";
-        hash = "sha256-/DKjx4lXtr4QZq3wZwFwy8Q+094Cq5H6RsvEaswcCD8=";
+        rev = "v3.1.6";
+        hash = "sha256-ZeLxHnX7FPpHQ+CV1EiGQc9+jxY/+wYMk/d/6QdXji4=";
       })
     ];
   };
