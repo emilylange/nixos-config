@@ -2,9 +2,7 @@
   git = {
     host = builtins.concatStringsSep " " [
       "codeberg.org"
-      "git.dn42.dev"
-      "git.geklaute.cloud"
-      "gitea.com"
+      "git.*"
       "github.com"
       "gitlab.com"
     ];
