@@ -36,7 +36,7 @@
             ./machines/${name}.nix
             ./presets/common/defaults
             ./presets/server/defaults
-          ] ++ (import ./modules/module-list.nix);
+          ] ++ (import ./modules/module-list.nix) ++ inputs.redacted.private-modules;
         };
 
         futro = { ... }: { };
@@ -57,7 +57,7 @@
             ./presets/common/defaults
             ./presets/desktop/defaults
             ({ ... }: { nixpkgs.overlays = import ./overlays; })
-          ] ++ (import ./modules/module-list.nix);
+          ] ++ (import ./modules/module-list.nix) ++ inputs.redacted.private-modules;
         };
 
         frameless = lib.nixosSystem {
@@ -71,7 +71,7 @@
             ./presets/common/defaults
             ./presets/desktop/defaults
             ({ ... }: { nixpkgs.overlays = import ./overlays; })
-          ] ++ (import ./modules/module-list.nix);
+          ] ++ (import ./modules/module-list.nix) ++ inputs.redacted.private-modules;
         };
       } // colmenaHive.nodes;
 
