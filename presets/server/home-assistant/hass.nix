@@ -23,7 +23,6 @@
       history = { };
       logbook = { };
       logger = { };
-      map = { };
       mobile_app = { };
       my = { };
       person = { };
@@ -71,21 +70,6 @@
         hash = "sha256-ZeLxHnX7FPpHQ+CV1EiGQc9+jxY/+wYMk/d/6QdXji4=";
       })
     ];
-    customLovelaceModules = [
-      (
-        (pkgs.fetchFromGitHub {
-          owner = "Hypfer";
-          repo = "lovelace-valetudo-map-card";
-          rev = "v2023.04.0";
-          hash = "sha256-oRU+QPswvj2oL9+BHyAEQhlsd4pMMdrkHuL/ihUbIro=";
-          postFetch = ''
-            mv $out src
-            mkdir $out
-            install -m0644 src/dist/valetudo-map-card.js $out
-          '';
-        }).overrideAttrs (_: { version = "2023.04.0"; passthru.entrypoint = "valetudo-map-card.js"; })
-      )
-    ];
   };
 
   services.postgresql = {
@@ -103,10 +87,4 @@
     user = config.systemd.services.home-assistant.serviceConfig.User;
   };
   systemd.services.home-assistant.unitConfig.ConditionPathExists = [ config.deployment.keys."secrets.yaml".path ];
-
-  # See https://discourse.nixos.org/t/breaking-changes-announcement-for-unstable/17574/42
-  # tl;dr: home-assistant's matter integration is only available as blob and uses openssl v1.1
-  nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.1.1w"
-  ];
 }
