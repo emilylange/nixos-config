@@ -172,6 +172,7 @@
         gitMinimal
         nix
         nodejs
+        openssh
       ];
     };
   };
