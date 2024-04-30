@@ -23,7 +23,7 @@
     pavucontrol
     rclone
     remmina
-    tdesktop
+    telegram-desktop
     thunderbird
     trash-cli
     vlc

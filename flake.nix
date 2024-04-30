@@ -20,7 +20,11 @@
     rec {
       inherit (inputs.nixpkgs) lib;
 
-      pkgs = import inputs."nixpkgs-small" { system = "x86_64-linux"; overlays = import ./overlays; };
+      pkgs = import inputs."nixpkgs-small" {
+        system = "x86_64-linux";
+        overlays = import ./overlays;
+        config.allowAliases = false;
+      };
 
       colmenaHive = inputs.colmena.lib.makeHive {
         meta = {
@@ -56,7 +60,7 @@
             ./machines/ryzen.nix
             ./presets/common/defaults
             ./presets/desktop/defaults
-            ({ ... }: { nixpkgs.overlays = import ./overlays; })
+            { nixpkgs.overlays = import ./overlays; nixpkgs.config.allowAliases = false; }
           ] ++ (import ./modules/module-list.nix) ++ inputs.redacted.private-modules;
         };
 
@@ -70,7 +74,7 @@
             ./machines/frameless.nix
             ./presets/common/defaults
             ./presets/desktop/defaults
-            ({ ... }: { nixpkgs.overlays = import ./overlays; })
+            { nixpkgs.overlays = import ./overlays; nixpkgs.config.allowAliases = false; }
           ] ++ (import ./modules/module-list.nix) ++ inputs.redacted.private-modules;
         };
       } // colmenaHive.nodes;
