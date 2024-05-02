@@ -10,6 +10,7 @@
         "video"
       ];
       shell = pkgs.fish;
+      home = "/home";
     };
   };
   programs.fish.enable = true;
