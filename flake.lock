@@ -211,6 +211,38 @@
         "type": "github"
       }
     },
+    "lix": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1714969435,
+        "narHash": "sha256-HNIT8NiSZ1qrQMQT69Cr1nIhxrIIqHNPqLlmsVdcl18=",
+        "ref": "refs/heads/main",
+        "rev": "106b95904304e498cc6c72aace705441768ab240",
+        "revCount": 15502,
+        "type": "git",
+        "url": "https://git@git.lix.systems/lix-project/lix"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git@git.lix.systems/lix-project/lix"
+      }
+    },
+    "lix-module": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1714868057,
+        "narHash": "sha256-Q9vGkxmuarySjPKO6yixjZ0tkaVIQS2wU9FpCpDA7+I=",
+        "ref": "refs/heads/main",
+        "rev": "e31baf57680bab449ab5b40179cc4a08a99f5314",
+        "revCount": 62,
+        "type": "git",
+        "url": "https://git.lix.systems/lix-project/nixos-module"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.lix.systems/lix-project/nixos-module"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1714984131,
@@ -326,6 +358,8 @@
         "colmena": "colmena",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
+        "lix": "lix",
+        "lix-module": "lix-module",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-small": "nixpkgs-small",

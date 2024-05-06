@@ -3,6 +3,11 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
 
+    lix.url = "git+https://git@git.lix.systems/lix-project/lix";
+    lix.flake = false;
+    lix-module.url = "git+https://git.lix.systems/lix-project/nixos-module";
+    lix-module.flake = false;
+
     colmena.url = "github:zhaofengli/colmena";
     colmena.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -40,6 +45,7 @@
             ./machines/${name}.nix
             ./presets/common/defaults
             ./presets/server/defaults
+            (import "${inputs.lix-module}/module.nix" { inherit (inputs) lix; })
           ] ++ (import ./modules/module-list.nix) ++ inputs.redacted.private-modules;
         };
 
@@ -60,6 +66,7 @@
             ./machines/ryzen.nix
             ./presets/common/defaults
             ./presets/desktop/defaults
+            (import "${inputs.lix-module}/module.nix" { inherit (inputs) lix; })
             { nixpkgs.overlays = import ./overlays; nixpkgs.config.allowAliases = false; }
           ] ++ (import ./modules/module-list.nix) ++ inputs.redacted.private-modules;
         };
@@ -74,6 +81,7 @@
             ./machines/frameless.nix
             ./presets/common/defaults
             ./presets/desktop/defaults
+            (import "${inputs.lix-module}/module.nix" { inherit (inputs) lix; })
             { nixpkgs.overlays = import ./overlays; nixpkgs.config.allowAliases = false; }
           ] ++ (import ./modules/module-list.nix) ++ inputs.redacted.private-modules;
         };
