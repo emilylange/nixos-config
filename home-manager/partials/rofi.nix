@@ -1,8 +1,9 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.rofi = {
     enable = true;
+    package = pkgs.rofi-wayland;
     font = "MesloLGS NF Regular 12";
     extraConfig = {
       show-icons = true;
