@@ -62,6 +62,8 @@
   powerManagement.cpuFreqGovernor = "powersave";
   hardware.cpu.intel.updateMicrocode = true;
 
+  hardware.framework.enableKmod = false;
+
   networking.hostName = "frameless";
   system.stateVersion = "22.05";
 }
