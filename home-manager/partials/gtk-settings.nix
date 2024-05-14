@@ -10,9 +10,9 @@
       size = 9;
     };
     gtk3.bookmarks = [
-      "file:///home/me/Downloads"
+      "file:///home/Downloads"
       "file:///tmp/ /tmp"
-      "file:///home/me/dev ~/dev"
+      "file:///home/dev ~/dev"
     ];
   };
 
