@@ -3,7 +3,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
 
-    lix.url = "git+https://git@git.lix.systems/lix-project/lix";
+    lix.url = "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
     lix.flake = false;
     lix-module.url = "git+https://git.lix.systems/lix-project/nixos-module";
     lix-module.flake = false;
