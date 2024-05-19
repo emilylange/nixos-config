@@ -152,7 +152,7 @@ in
 
       output = {
         eDP-1 = {
-          scale = "1.1";
+          scale = "1";
         };
 
         DP-3 = {
