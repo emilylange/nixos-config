@@ -49,10 +49,11 @@
           ] ++ (import ./modules/module-list.nix) ++ inputs.redacted.private-modules;
         };
 
-        futro = { ... }: { };
-        netcup01 = { ... }: { };
-        wip = { ... }: { };
-        smol = { ... }: { };
+        futro = { };
+        netcup01 = { };
+        wip = { };
+        smol = { };
+        spof = { };
       };
 
       nixosConfigurations = {
