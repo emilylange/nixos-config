@@ -85,6 +85,15 @@
             { nixpkgs.overlays = import ./overlays; nixpkgs.config.allowAliases = false; }
           ] ++ (import ./modules/module-list.nix) ++ inputs.redacted.private-modules;
         };
+
+        # nix build -L .#nixosConfigurations.lix-iso.config.system.build.isoImage
+        lix-iso = lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+            (import "${inputs.lix-module}/module.nix" { inherit (inputs) lix; })
+          ];
+        };
       } // colmenaHive.nodes;
 
       /*
