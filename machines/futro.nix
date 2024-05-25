@@ -23,7 +23,6 @@
 {
   imports = [
     ../presets/server/home-assistant
-    ../presets/server/paperless
   ];
 
   networking.interfaces.eth0.ipv4.addresses = [{
