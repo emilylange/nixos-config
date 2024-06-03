@@ -39,8 +39,8 @@
         ];
 
         routes = [
-          { routeConfig.Gateway = "5.252.224.1"; }
-          { routeConfig.Gateway = "fe80::1"; }
+          { Gateway = "5.252.224.1"; }
+          { Gateway = "fe80::1"; }
         ];
       };
     };

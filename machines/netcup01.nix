@@ -22,8 +22,8 @@ in
           "2a03:4000:3e:1f8::1/64"
         ];
         routes = [
-          { routeConfig.Gateway = "2.56.96.1"; }
-          { routeConfig.Gateway = "fe80::1"; }
+          { Gateway = "2.56.96.1"; }
+          { Gateway = "fe80::1"; }
         ];
       };
 
@@ -51,10 +51,8 @@ in
 
         wireguardPeers = [
           {
-            wireguardPeerConfig = {
-              PublicKey = config.redacted.wip.wireguard.ipv4.publicKey;
-              AllowedIPs = [ "192.168.178.2" ];
-            };
+            PublicKey = config.redacted.wip.wireguard.ipv4.publicKey;
+            AllowedIPs = [ "192.168.178.2" ];
           }
         ];
       };

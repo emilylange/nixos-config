@@ -89,7 +89,7 @@
           "2a01:4f8:190:441a::ffff/64"
         ];
         routes = [
-          { routeConfig.Gateway = "fe80::1"; }
+          { Gateway = "fe80::1"; }
         ];
       };
 
@@ -98,10 +98,8 @@
       "20-anyip" = {
         matchConfig.Name = [ "lo" ];
         routes = [{
-          routeConfig = {
-            Type = "local";
-            Destination = "2a01:4f8:190:441a::/64";
-          };
+          Type = "local";
+          Destination = "2a01:4f8:190:441a::/64";
         }];
       };
 
@@ -125,12 +123,10 @@
 
         wireguardPeers = [
           {
-            wireguardPeerConfig = {
-              PublicKey = config.redacted.netcup01.wireguard.ipv4.publicKey;
-              AllowedIPs = [ "0.0.0.0/0" ];
-              Endpoint = "netcup01.gkcl.de:51825";
-              PersistentKeepalive = 25;
-            };
+            PublicKey = config.redacted.netcup01.wireguard.ipv4.publicKey;
+            AllowedIPs = [ "0.0.0.0/0" ];
+            Endpoint = "netcup01.gkcl.de:51825";
+            PersistentKeepalive = 25;
           }
         ];
       };

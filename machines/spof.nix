@@ -36,7 +36,7 @@
       "10-ethernet-uplink" = {
         matchConfig.Name = [ "eno1" ];
         address = [ "192.168.10.2/24" ];
-        routes = [{ routeConfig.Gateway = "192.168.10.1"; }];
+        routes = [{ Gateway = "192.168.10.1"; }];
       };
     };
   };
