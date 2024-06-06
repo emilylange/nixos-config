@@ -7,19 +7,10 @@ in
   services.forgejo = {
     enable = true;
 
-    package = pkgs.forgejo.override {
-      buildGoModule = args: pkgs.buildGoModule (args // {
-        subPackages = [ "." "contrib/environment-to-ini" ];
-      });
-    };
-
     database = {
       type = "postgres";
       createDatabase = true;
-      passwordFile = config.deployment.keys."gitea_database-pw".path;
     };
-
-    mailerPasswordFile = config.deployment.keys."gitea_mailer-pw".path;
 
     lfs.enable = true;
 
@@ -30,7 +21,7 @@ in
 
       "ui.meta" = {
         AUTHOR = "Geklautecloud";
-        DESCRIPTION = "A tiny Gitea/Forgejo instance";
+        DESCRIPTION = "A tiny Forgejo instance";
         KEYWORDS = "git";
       };
 
@@ -69,7 +60,9 @@ in
 
       mailer = {
         ENABLED = true;
-        FROM = "noreply.gitea@geklaute.cloud";
+        FROM = "noreply.git@geklaute.cloud";
+        PROTOCOL = "smtps";
+        SEND_AS_PLAIN_TEXT = true;
       };
 
       openid = {
@@ -98,6 +91,19 @@ in
       log.LEVEL = "Warn";
       security.REVERSE_PROXY_TRUSTED_PROXIES = "192.168.0.0/16,172.16.0.0/12,10.0.0.0/8,127.0.0.1/8,fd00::/8,::1";
     };
+
+    secrets = {
+      mailer = {
+        PASSWD = "${cfg.customDir}/conf/_mailer_pw";
+        SMTP_ADDR = "${cfg.customDir}/conf/_mailer_host";
+        USER = "${cfg.customDir}/conf/_mailer_user";
+      };
+
+      service = {
+        HCAPTCHA_SECRET = "${cfg.customDir}/conf/_hcaptcha_secret";
+        HCAPTCHA_SITEKEY = "${cfg.customDir}/conf/_hcaptcha_sitekey";
+      };
+    };
   };
 
   systemd.tmpfiles.rules =
@@ -108,64 +114,18 @@ in
       '';
     in
     [
-      "L+ '${cfg.stateDir}/custom/robots.txt' - - - - ${robots}"
+      "L+ '${cfg.stateDir}/custom/assets/robots.txt' - - - - ${robots}"
     ];
 
   systemd.services.forgejo = {
-    serviceConfig = {
-      ## GITEA__SECTION_NAME__KEY_NAME
-      ## Escape `.` with `_0X2E_`
-      ## Escape `-` with `_0X2D_`
-      ## See https://github.com/go-gitea/gitea/tree/main/contrib/environment-to-ini
-      ## and https://docs.gitea.io/en-us/install-with-docker/#managing-deployments-with-environment-variables
-      EnvironmentFile = config.deployment.keys."gitea_additional_env".path;
-      ## TODO: remove when https://github.com/NixOS/nixpkgs/pull/242863 is resolved
-      RuntimeDirectoryMode = lib.mkForce "0755";
-    } // lib.optionalAttrs (cfg.settings.server.SSH_PORT < 1024) {
+    serviceConfig = lib.optionalAttrs (cfg.settings.server.SSH_PORT < 1024) {
       AmbientCapabilities = lib.mkForce "CAP_NET_BIND_SERVICE";
       CapabilityBoundingSet = lib.mkForce "CAP_NET_BIND_SERVICE";
       PrivateUsers = lib.mkForce false;
     };
-
-    ## incredible hacky way to use `environment-to-ini` in preStart
-    preStart = lib.mkBefore ''
-      function chmod {
-        if [[ "$1" == "u-w" ]]; then
-          echo "Running environment-to-ini..."
-          ${cfg.package}/bin/environment-to-ini --config "$2"
-        fi
-
-        ## run original command
-        command chmod "$@"
-      }
-    '';
   };
 
   networking.firewall.allowedTCPPorts = [
     cfg.settings.server.SSH_PORT
   ];
-
-  deployment.keys."gitea_database-pw" = {
-    user = cfg.user;
-    destDir = "/";
-    keyCommand = [ "bw" "--nointeraction" "get" "password" "gkcl/gitea_database-pw" ];
-  };
-
-  deployment.keys."gitea_mailer-pw" = {
-    user = cfg.user;
-    destDir = "/";
-    keyCommand = [ "bw" "--nointeraction" "get" "password" "gkcl/gitea_mailer-pw" ];
-  };
-
-  deployment.keys."gitea_additional_env" = {
-    user = cfg.user;
-    destDir = "/";
-    ## ```env
-    ## GITEA__mailer__HOST=
-    ## GITEA__mailer__USER=
-    ## GITEA__service__HCAPTCHA_SECRET=
-    ## GITEA__service__HCAPTCHA_SITEKEY=
-    ## ```
-    keyCommand = [ "bw" "--nointeraction" "get" "notes" "gkcl/gitea_additional_env" ];
-  };
 }
