@@ -18,15 +18,11 @@
 ##  ssh-keygen -t ed25519 -N "" -f /mnt/etc/secrets/initrd/ssh_host_ed25519_key
 ##  ./colmena-bootstrap futro /mnt # https://gist.github.com/zhaofengli/e986fa7688d6c16872b86c6ae6215c9b
 
-{ config, nodes, self, pkgs, ... }:
+{ config, self, ... }:
 
 {
-  imports = [
-    ../presets/server/home-assistant
-  ];
-
   networking.interfaces.eth0.ipv4.addresses = [{
-    address = "192.168.10.12";
+    address = "192.168.10.13";
     prefixLength = 24;
   }];
 
@@ -124,59 +120,6 @@
     ## TODO: eval `services.tlp`
     powertop.enable = true;
   };
-
-  networking.firewall = {
-    allowedTCPPorts = [
-      8123 ## homeassistant
-    ];
-    interfaces.eth0.allowedTCPPorts = [
-      1883 ## mqtt
-    ];
-  };
-
-  networking.wireguard.interfaces = {
-    hass = {
-      ips = [ "192.168.11.10/32" ];
-      privateKeyFile = config.deployment.keys."wg-hass".path;
-      peers = [
-        {
-          ## TODO: allowedIps has to end with `.0/24`, so maybe add some cird parsing
-          allowedIPs = [ "192.168.11.0/24" ];
-          endpoint = "netcup01.gkcl.de:${toString nodes.netcup01.config.networking.wireguard.interfaces.hass.listenPort}";
-          publicKey = config.redacted.netcup01.wireguard.hass.publicKey;
-          persistentKeepalive = 25;
-        }
-      ];
-    };
-  };
-
-  deployment.keys."wg-hass" = {
-    destDir = "/";
-    keyCommand = [ "bw" "--nointeraction" "get" "password" "gkcl/futro/wireguard/hass/privateKey" ];
-  };
-
-  services.gitea-actions-runner = {
-    package = pkgs.forgejo-runner;
-    instances."native" = {
-      enable = true;
-      name = "native";
-      url = "https://git.geklaute.cloud";
-      labels = [
-        "native:host"
-      ];
-      tokenFile = "/forgejo_runner_token_native";
-      hostPackages = with pkgs; [
-        bash
-        coreutils
-        gitMinimal
-        nix
-        nodejs
-        openssh
-      ];
-    };
-  };
-  # TODO: fix this upstream
-  systemd.services.gitea-runner-native.environment.HOME = "/var/lib/gitea-runner/native";
 
   system.stateVersion = "22.05";
 }

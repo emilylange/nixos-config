@@ -25,9 +25,31 @@
 
 {
   imports = [
+    ../presets/server/home-assistant
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.lanzaboote.nixosModules.lanzaboote
   ];
+
+  services.gitea-actions-runner = {
+    package = pkgs.forgejo-runner;
+    instances."native" = {
+      enable = true;
+      name = "native";
+      url = "https://git.geklaute.cloud";
+      labels = [
+        "native:host"
+      ];
+      tokenFile = "/forgejo_runner_token_native";
+      hostPackages = with pkgs; [
+        bash
+        coreutils
+        gitMinimal
+        nix
+        nodejs
+        openssh
+      ];
+    };
+  };
 
   networking.useDHCP = false;
   systemd.network = {
@@ -35,7 +57,7 @@
     networks = {
       "10-ethernet-uplink" = {
         matchConfig.Name = [ "eno1" ];
-        address = [ "192.168.10.2/24" ];
+        address = [ "192.168.10.2/24" "192.168.10.12/24" ];
         routes = [{ Gateway = "192.168.10.1"; }];
       };
     };

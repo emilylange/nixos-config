@@ -13,7 +13,7 @@ builtins.mapAttrs
     };
 
     futro = {
-      hostname = "192.168.10.12";
+      hostname = "192.168.10.13";
     };
 
     wip = {
