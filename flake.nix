@@ -15,7 +15,7 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    lanzaboote.url = "github:nix-community/lanzaboote/v0.3.0";
+    lanzaboote.url = "github:nix-community/lanzaboote/v0.4.0";
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
 
     redacted.url = "git+ssh://git@git.geklaute.cloud/emilylange/nixos-config-redacted";
