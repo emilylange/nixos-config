@@ -142,7 +142,7 @@ in
       privateKeyFile = config.deployment.keys."wg-hass".path;
       peers = [
         {
-          allowedIPs = nodes.futro.config.networking.wireguard.interfaces.hass.ips;
+          allowedIPs = nodes.spof.config.networking.wireguard.interfaces.hass.ips;
           publicKey = config.redacted.futro.wireguard.hass.publicKey;
         }
         {
