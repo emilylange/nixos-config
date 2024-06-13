@@ -15,6 +15,7 @@
 
     extraConfig = {
       init.defaultBranch = "main";
+      commit.cleanup = "scissors";
       commit.verbose = true;
       pull.rebase = true;
 
