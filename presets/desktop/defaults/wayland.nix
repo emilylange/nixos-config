@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 
 {
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
   security.polkit.enable = true;
 
   xdg.portal = {
