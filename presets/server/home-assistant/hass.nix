@@ -69,6 +69,12 @@
         rev = "v3.1.6";
         hash = "sha256-ZeLxHnX7FPpHQ+CV1EiGQc9+jxY/+wYMk/d/6QdXji4=";
       })
+      (pkgs.fetchFromGitHub {
+        owner = "hg1337";
+        repo = "homeassistant-dwd";
+        rev = "2024.4.0";
+        hash = "sha256-2bmLEBt6031p9SN855uunq7HrRJ9AFokw8t4CSBidTM=";
+      })
     ];
   };
 
