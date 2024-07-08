@@ -52,11 +52,12 @@
   };
 
   networking.useDHCP = false;
+  networking.usePredictableInterfaceNames = false;
   systemd.network = {
     enable = true;
     networks = {
       "10-ethernet-uplink" = {
-        matchConfig.Name = [ "eno1" ];
+        matchConfig.Name = [ "eth0" ];
         address = [ "192.168.10.2/24" "192.168.10.12/24" ];
         routes = [{ Gateway = "192.168.10.1"; }];
       };
