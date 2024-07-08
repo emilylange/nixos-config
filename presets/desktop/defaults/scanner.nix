@@ -7,7 +7,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    gnome.simple-scan
+    simple-scan
   ];
 
   users.users.me.extraGroups = [ "scanner" "lp" ];

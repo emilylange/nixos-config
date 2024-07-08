@@ -11,8 +11,7 @@
     doggo
     farge
     firefox
-    gnome.gnome-calculator
-    gnome.seahorse ## gnome keyring gui
+    gnome-calculator
     jq
     kubectl
     kubernetes-helm
@@ -23,6 +22,7 @@
     pavucontrol
     rclone
     remmina
+    seahorse # gnome keyring gui
     telegram-desktop
     thunderbird
     trash-cli
