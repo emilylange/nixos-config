@@ -10,16 +10,20 @@
 
   networking.wireguard.interfaces = {
     hass = {
-      ips = [ "192.168.11.10/32" ];
+      ips = [
+        "fd64:aaaa:aaaa::/128"
+        "2a01:4f8:190:441a:aaaa:aaaa:aaaa:aaaa/128"
+      ];
+      listenPort = 54940;
       privateKeyFile = config.deployment.keys."wg-hass".path;
       peers = [
         {
-          allowedIPs = [ "192.168.11.0/24" ];
-          endpoint = "netcup01.gkcl.de:${toString nodes.netcup01.config.networking.wireguard.interfaces.hass.listenPort}";
-          publicKey = config.redacted.netcup01.wireguard.hass.publicKey;
+          allowedIPs = [ "fd64:aaaa:aaaa::6666/128" ];
+          endpoint = "[2a01:4f8:190:441a::ffff]:31921";
+          publicKey = "xFeQuWKTFuMnfGG0nB6KR6VzV1t7BIYxZ0mAkUIqaFw=";
           persistentKeepalive = 25;
         }
-      ];
+      ] ++ config.redacted.global.home-assistant.wireguard.peers;
     };
   };
 
@@ -31,6 +35,9 @@
   networking.firewall = {
     allowedTCPPorts = [
       8123 ## homeassistant
+    ];
+    allowedUDPPorts = [
+      54940 # wireguard
     ];
     interfaces.eth0.allowedTCPPorts = [
       1883 ## mqtt

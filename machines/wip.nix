@@ -76,6 +76,37 @@
   ## forgejo's internal ssh server runs on :22
   services.openssh.ports = [ 22222 ];
 
+  boot.kernel.sysctl."net.ipv6.conf.all.forwarding" = 1;
+  networking.wireguard.interfaces.wg-home = {
+    ips = [ "fd64:aaaa:aaaa::6666/128" ];
+    listenPort = 31921;
+    privateKeyFile = "/wg-home";
+    generatePrivateKeyFile = true;
+    peers = [
+      {
+        allowedIPs = [ "fd64:aaaa:aaaa::/128" ];
+        publicKey = config.redacted.futro.wireguard.hass.publicKey;
+      }
+    ];
+  };
+  networking.firewall = {
+    allowedUDPPorts = [ 31921 ];
+
+    extraCommands = ''
+      ip6tables -t nat -A PREROUTING -p udp -m udp --dport 54940 -j DNAT --to-destination [fd64:aaaa:aaaa::]:54940
+      ip6tables -t nat -A POSTROUTING -d fd64:aaaa:aaaa::/128 -p udp -m udp --dport 54940 -j SNAT --to-source fd64:aaaa:aaaa::6666
+
+      ip6tables -t mangle -A FORWARD -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+    '';
+
+    extraStopCommands = ''
+      ip6tables -t nat -D PREROUTING -p udp -m udp --dport 54940 -j DNAT --to-destination [fd64:aaaa:aaaa::]:54940
+      ip6tables -t nat -D POSTROUTING -d fd64:aaaa:aaaa::/128 -p udp -m udp --dport 54940 -j SNAT --to-source fd64:aaaa:aaaa::6666
+
+      ip6tables -t mangle -D FORWARD -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+    '';
+  };
+
   networking.useDHCP = false;
   networking.usePredictableInterfaceNames = true;
   boot.kernel.sysctl."net.ipv6.ip_nonlocal_bind" = true; # needed for AnyIP, see below

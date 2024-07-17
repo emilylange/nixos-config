@@ -17,7 +17,7 @@ builtins.mapAttrs
     };
 
     wip = {
-      hostname = "2a01:4f8:190:441a::";
+      hostname = "2a01:4f8:190:441a::1";
       port = 22222;
     };
 

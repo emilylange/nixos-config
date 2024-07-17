@@ -1,4 +1,4 @@
-{ config, pkgs, modulesPath, nodes, ... }:
+{ config, pkgs, modulesPath, ... }:
 
 let
   wg-ipv4-port = 51825;
@@ -130,33 +130,9 @@ in
       '';
 
       allowedUDPPorts = [
-        config.networking.wireguard.interfaces.hass.listenPort
         wg-ipv4-port
       ];
     };
-
-  networking.wireguard.interfaces = {
-    hass = {
-      ips = [ "192.168.11.20/24" ];
-      listenPort = 31921;
-      privateKeyFile = config.deployment.keys."wg-hass".path;
-      peers = [
-        {
-          allowedIPs = nodes.spof.config.networking.wireguard.interfaces.hass.ips;
-          publicKey = config.redacted.futro.wireguard.hass.publicKey;
-        }
-        {
-          allowedIPs = [ "192.168.11.150/32" ];
-          publicKey = config.redacted.phone.wireguard.hass.publicKey;
-        }
-      ];
-    };
-  };
-
-  deployment.keys."wg-hass" = {
-    destDir = "/";
-    keyCommand = [ "bw" "--nointeraction" "get" "password" "gkcl/netcup01/wireguard/hass/privateKey" ];
-  };
 
   deployment.keys."wg-ipv4" = {
     destDir = "/";

@@ -230,6 +230,11 @@ in
       {time.now.http}` 200
         }
 
+        @internal expression {http.request.local.host} == "2a01:4f8:190:441a:aaaa:aaaa:aaaa:aaaa"
+        handle @internal {
+          respond "not connected." 200
+        }
+
         handle {
           redir https://xn--krmel-lva.emily.town
         }
