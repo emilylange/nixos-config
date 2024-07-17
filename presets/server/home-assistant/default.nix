@@ -1,4 +1,4 @@
-{ config, nodes, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -27,6 +27,50 @@
     };
   };
 
+  services.caddy = {
+    enable = true;
+    package = pkgs.callPackage ../../../packages/caddy { };
+    configFile = pkgs.writeTextDir "Caddyfile" ''
+      {
+        grace_period 10s
+      }
+
+      (defaults) {
+        encode zstd gzip
+
+        header Strict-Transport-Security "max-age=31536000; includeSubDomains"
+        header X-Powered-By "trans rights are human rights"
+
+        @X-Clacks-Overhead header X-Clacks-Overhead *
+        header @X-Clacks-Overhead X-Clacks-Overhead {http.request.header.X-Clacks-Overhead}
+
+        handle_path /.well-known/security.txt {
+          respond `${lib.readFile ../caddy/security.txt}`
+        }
+      }
+
+      emily.town *.emily.town {
+        import defaults
+
+        tls {
+          dns acmedns /caddy_acmedns_emily.town.json
+          propagation_timeout -1
+        }
+
+        # punycode for "höme"
+        @home host xn--hme-sna.emily.town
+        handle @home {
+          reverse_proxy http://[::1]:8123
+        }
+
+        handle {
+          redir https://emily.town
+        }
+      }
+
+    '' + /Caddyfile;
+  };
+
   deployment.keys."wg-hass" = {
     destDir = "/";
     keyCommand = [ "bw" "--nointeraction" "get" "password" "gkcl/futro/wireguard/hass/privateKey" ];
@@ -34,13 +78,15 @@
 
   networking.firewall = {
     allowedTCPPorts = [
-      8123 ## homeassistant
+      80 # caddy
+      443 # caddy
     ];
     allowedUDPPorts = [
+      443 # caddy
       54940 # wireguard
     ];
     interfaces.eth0.allowedTCPPorts = [
-      1883 ## mqtt
+      1883 # mqtt
     ];
   };
 

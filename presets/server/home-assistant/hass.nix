@@ -29,6 +29,12 @@
       sun = { };
       system_health = { };
 
+      http = {
+        server_host = "::1";
+        trusted_proxies = "::1";
+        use_x_forwarded_for = true;
+      };
+
       homeassistant = {
         unit_system = "metric";
         country = "!secret country";
