@@ -26,6 +26,7 @@
 {
   imports = [
     ../presets/server/home-assistant
+    ../presets/server/owntracks
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.lanzaboote.nixosModules.lanzaboote
   ];

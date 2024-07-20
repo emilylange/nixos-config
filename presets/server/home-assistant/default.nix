@@ -63,6 +63,12 @@
           reverse_proxy http://[::1]:8123
         }
 
+        # punycode for "öwnträcks"
+        @owntracks host xn--wntrcks-8wa1n.emily.town
+        handle @owntracks {
+          reverse_proxy http://[::1]:8083
+        }
+
         handle {
           redir https://emily.town
         }
