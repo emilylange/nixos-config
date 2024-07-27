@@ -10,7 +10,6 @@
     colmena
     doggo
     farge
-    firefox
     gnome-calculator
     jq
     kubectl
