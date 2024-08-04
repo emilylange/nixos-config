@@ -159,11 +159,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1721852138,
-        "narHash": "sha256-JH8N5uoqoVA6erV4O40VtKKHsnfmhvMGbxMNDLtim5o=",
+        "lastModified": 1722630065,
+        "narHash": "sha256-QfM/9BMRkCmgWzrPDK+KbgJOUlSJnfX4OvsUupEUZvA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "304a011325b7ac7b8c9950333cd215a7aa146b0e",
+        "rev": "afc892db74d65042031a093adb6010c4c3378422",
         "type": "github"
       },
       "original": {
@@ -202,11 +202,11 @@
     "lix": {
       "flake": false,
       "locked": {
-        "lastModified": 1721949030,
-        "narHash": "sha256-UmNXaythnYETW1iW2xR3SGZalGv+hoVQvjSn6fE4Pww=",
-        "rev": "60a48311e84c228e664a44c8d049ea3080879a40",
+        "lastModified": 1722643724,
+        "narHash": "sha256-FrM0DN/i5kKB06/4KYNkY3mMGpC5hYQhaKtx1mneReU=",
+        "rev": "66469fc281fc4abb3284574f77a8051fee8116b9",
         "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/60a48311e84c228e664a44c8d049ea3080879a40.tar.gz"
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/66469fc281fc4abb3284574f77a8051fee8116b9.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -216,11 +216,11 @@
     "lix-module": {
       "flake": false,
       "locked": {
-        "lastModified": 1720695775,
-        "narHash": "sha256-8Oqzl9QPjEe/n8y0R2tC6+2v/H6xBgABHXOJwxmnBg0=",
-        "rev": "d70318fb946a0e720dfdd1fb10b0645c14e2a02a",
+        "lastModified": 1722485024,
+        "narHash": "sha256-+7RReWaFQUO8MfAhJYNm4FkALuM3rPGy2AlXXv9Jmc8=",
+        "rev": "e350380d72f94035c309e19fda2fd550f6ab7376",
         "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/nixos-module/archive/d70318fb946a0e720dfdd1fb10b0645c14e2a02a.tar.gz"
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/nixos-module/archive/e350380d72f94035c309e19fda2fd550f6ab7376.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -229,11 +229,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1721911538,
-        "narHash": "sha256-5OrkPJsiZmNe99C6+KX0qx9sphoVLvldFjuqDYAZ8GQ=",
+        "lastModified": 1722332872,
+        "narHash": "sha256-2xLM4sc5QBfi0U/AANJAW21Bj4ZX479MHPMPkB+eKBU=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "d3c993c851ad40bbab7e08d566138ff72cd8744f",
+        "rev": "14c333162ba53c02853add87a0000cbd7aa230c2",
         "type": "github"
       },
       "original": {
@@ -245,11 +245,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1721743106,
-        "narHash": "sha256-adRZhFpBTnHiK3XIELA3IBaApz70HwCYfv7xNrHjebA=",
+        "lastModified": 1722630782,
+        "narHash": "sha256-hMyG9/WlUi0Ho9VkRrrez7SeNlDzLxalm9FwY7n/Noo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "dc14ed91132ee3a26255d01d8fd0c1f5bff27b2f",
+        "rev": "d04953086551086b44b6f3c6b7eeb26294f207da",
         "type": "github"
       },
       "original": {
@@ -261,11 +261,11 @@
     },
     "nixpkgs-small": {
       "locked": {
-        "lastModified": 1721932262,
-        "narHash": "sha256-VP94YlSxPssveRHV9LM1+bCgTvr2/8ZrCW3bPcs40jE=",
+        "lastModified": 1722785290,
+        "narHash": "sha256-LzUGwvBGkZLiJc5WeUo6ZXWGqZPEfmQuS+E9fM8bTpY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a75ae8c786097924c2dd0dadb36cbd45b317d162",
+        "rev": "c933cf4698e5189b35dd83bf4d7a81aef16d464a",
         "type": "github"
       },
       "original": {
@@ -320,11 +320,11 @@
     },
     "redacted": {
       "locked": {
-        "lastModified": 1721230348,
-        "narHash": "sha256-6Ilgf+8bT3NUra8d6qQvsK2m1BXP2PLsCPdRLaP4cfY=",
+        "lastModified": 1722804247,
+        "narHash": "sha256-mSwDAxix+T0RrVCahLqe3MPFpLAvc+2FXTZiKexWxik=",
         "ref": "refs/heads/main",
-        "rev": "1a510aed31a05122d9e0bbd2c96cca89514b72fd",
-        "revCount": 32,
+        "rev": "8732a103d8c5d9b555f48181cd089a150f4d6e1f",
+        "revCount": 34,
         "type": "git",
         "url": "ssh://git@git.geklaute.cloud/emilylange/nixos-config-redacted"
       },
