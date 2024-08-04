@@ -11,7 +11,7 @@ in
   options.services.terraform-backend = {
     enable = mkEnableOption "terraform-backend state backend server";
 
-    package = mkPackageOptionMD pkgs "terraform-backend" { };
+    package = mkPackageOption pkgs "terraform-backend" { };
 
     dataDir = mkOption {
       type = types.path;

@@ -68,20 +68,51 @@
         }
       ];
     };
-    customComponents = [
-      (pkgs.fetchFromGitHub {
-        owner = "zachowj";
-        repo = "hass-node-red";
-        rev = "v3.1.6";
-        hash = "sha256-ZeLxHnX7FPpHQ+CV1EiGQc9+jxY/+wYMk/d/6QdXji4=";
-      })
-      (pkgs.fetchFromGitHub {
-        owner = "hg1337";
-        repo = "homeassistant-dwd";
-        rev = "2024.4.0";
-        hash = "sha256-2bmLEBt6031p9SN855uunq7HrRJ9AFokw8t4CSBidTM=";
-      })
-    ];
+    customComponents =
+      let
+        inherit (pkgs)
+          buildHomeAssistantComponent
+          fetchFromGitHub
+          ;
+        inherit (config.services.home-assistant.package.python.pkgs)
+          defusedxml
+          ;
+      in
+      [
+        (buildHomeAssistantComponent rec {
+          owner = "zachowj";
+          domain = "nodered";
+          version = "3.1.6";
+
+          src = fetchFromGitHub {
+            owner = "zachowj";
+            repo = "hass-node-red";
+            rev = "v${version}";
+            hash = "sha256-ZeLxHnX7FPpHQ+CV1EiGQc9+jxY/+wYMk/d/6QdXji4=";
+          };
+        })
+
+        (buildHomeAssistantComponent rec {
+          owner = "hg1337";
+          domain = "dwd";
+          version = "2024.4.0";
+
+          src = fetchFromGitHub {
+            owner = "hg1337";
+            repo = "homeassistant-dwd";
+            rev = version;
+            hash = "sha256-2bmLEBt6031p9SN855uunq7HrRJ9AFokw8t4CSBidTM=";
+          };
+
+          postPatch = ''
+            substituteInPlace custom_components/dwd/manifest.json --replace-fail 'defusedxml==0.7.1' 'defusedxml==${defusedxml.version}'
+          '';
+
+          propagatedBuildInputs = [
+            defusedxml
+          ];
+        })
+      ];
   };
 
   services.postgresql = {

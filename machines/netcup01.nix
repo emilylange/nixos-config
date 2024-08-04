@@ -32,7 +32,7 @@ in
         address = [ "192.168.178.1/24" ];
         networkConfig = {
           IPMasquerade = "ipv4";
-          IPForward = true;
+          IPv4Forwarding = true;
         };
       };
     };
